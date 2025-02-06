@@ -2,10 +2,20 @@
   overflow: none;
 }
 
+::-webkit-scrollbar {
+  display: none;
+} 
+
 body {
   background-color: #000000;
   color: rgb(206, 203, 203);
 }
+
+img {
+  -webkit-user-drag: none; /* Disable dragging in WebKit browsers */
+  user-select: none; /* Prevent text selection */
+}
+
 
 .no-caret {
   caret-color: transparent;
@@ -94,7 +104,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   color: rgb(206, 203, 203);
-  margin-top: -95px;
+  margin-top: -85px;
 }
 
 .contact-container h1 {
@@ -113,6 +123,7 @@ body {
 }
 
 .img-container {
+  z-index: 50;
   border-radius: 10px;
   box-sizing: border-box;
   width: 100%;
