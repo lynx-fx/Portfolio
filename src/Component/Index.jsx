@@ -78,12 +78,12 @@ export default function Index() {
           </SpotlightCard>
 
           <div className="img-container">
-            <img src="/Portfolio/me.jpg" alt="Me" />
+            <img src="/me.jpg" alt="Me" />
           </div>
 
           <SpotlightCard className="setup-container">
             <h3>My Projects</h3>
-            <img src="/Portfolio/setup.jpg" alt="Set-up" />
+            <img src="/setup.jpg" alt="Set-up" />
             <h3>Growing as of now.</h3>
           </SpotlightCard>
 
