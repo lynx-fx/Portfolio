@@ -3,6 +3,7 @@ import gsap from "gsap";
 import "../Styles/Index.css";
 import TrueFocus from "./TrueFocus";
 import SpotlightCard from "./SpotlightCard";
+import Nav from "./Nav";
 
 export default function Index() {
   const comp = useRef(null);
@@ -105,25 +106,10 @@ export default function Index() {
     return () => ctx.revert();
   }, []);
 
-  const navLinks = [
-    { name: "About", href: "#" },
-    { name: "Projects", href: "#" },
-    { name: "Contact", href: "#" },
-  ];
+ 
   return (
     <div ref={comp}>
-      <div id="nav">
-        <SpotlightCard className="nav no-caret">
-          <h1>Lynxx</h1>
-          <ul>
-            {navLinks.map((link, index) => (
-              <li key={index}>
-                <a href={link.href}>{link.name}</a>
-              </li>
-            ))}
-          </ul>
-        </SpotlightCard>
-      </div>
+      <Nav />
       <div className="main-container no-caret">
         <div className="section-container">
           <div id="bio">
