@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import "../Styles/Index.css";
 import TrueFocus from "./TrueFocus";
@@ -8,12 +8,16 @@ import Nav from "./Nav";
 export default function Index() {
   const comp = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       const master = gsap.timeline();
 
       const t1 = gsap.timeline();
-  
+
       t1.fromTo(
         "#me",
         {
@@ -45,60 +49,17 @@ export default function Index() {
           duration: 1,
           ease: "power2.out",
         },
-        "-=0.5"
+        "-=0.7"
       );
 
       const t2 = gsap.timeline({ delay: -0.65 });
-      t2.from(
-        ["#bio", "#info"],
-        {
-          opacity: 0,
-          scale: 0,
-          xPercent: 100,
-          yPercent: -50,
-          stagger: 0.2,
-          duration: 1,
-          ease: "power2.out",
-        },
-        "<"
-      );
-      t2.from(
-        ["#setup", "#link"],
-        {
-          opacity: 0,
-          scale: 0,
-          xPercent: -100,
-          yPercent: 50,
-          stagger: 0.2,
-          duration: 1,
-          ease: "power2.out",
-        },
-        "<"
-      );
-      t2.from(
-        "#nav",
-        {
-          opacity: 0,
-          scale: 0,
-          yPercent: 200,
-          stagger: 0.2,
-          duration: 1,
-          ease: "power2.out",
-        },
-        "<"
-      );
-      t2.from(
-        "#contact",
-        {
-          opacity: 0,
-          scale: 0,
-          yPercent: -200,
-          stagger: 0.2,
-          duration: 1,
-          ease: "power2.out",
-        },
-        "<"
-      );
+      t2.from(["#bio", "#info", "#contact", "#link", "#setup", "#nav"], {
+        opacity: 0,
+        scale: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power4.out",
+      });
 
       master.add(t1).add(t2);
     }, comp);
@@ -106,7 +67,6 @@ export default function Index() {
     return () => ctx.revert();
   }, []);
 
- 
   return (
     <div ref={comp}>
       <Nav />
@@ -121,7 +81,6 @@ export default function Index() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 id="Scribble-1.svg"
-                onclick="copyToClipboard(this)"
               >
                 <path
                   d="M20.891 16.8915C33.4615 11.3216 48.3988 11.8896 63.7568 13.4359C79.1149 14.9665 94.8937 17.4595 109.252 15.382C109.989 15.2768 110.462 14.593 110.357 13.8619C110.252 13.1308 109.568 12.626 108.832 12.7364C95.1041 14.8087 79.483 12.4629 64.0198 10.9849C48.5566 9.52278 33.1986 8.91795 19.9444 14.8297C19.4185 15.0612 19.3658 15.7659 19.5761 16.2393C19.7865 16.7179 20.3651 17.1176 20.891 16.8915Z"
@@ -167,6 +126,7 @@ export default function Index() {
               <h1>Never miss twice.</h1>
             </SpotlightCard>
           </div>
+          {/*b6WfV2t0Z6Wd560fI7A2=6=9*/}
 
           <div className="img-container" id="me">
             <img src="/me.jpg" alt="Me" />
