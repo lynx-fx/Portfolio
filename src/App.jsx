@@ -1,11 +1,19 @@
 import React from 'react';
-
-import Index from "./Component/Index";
+import './style.css'
 
 function App() {
   return (
     <>
-      <Index />
+    <body>
+    <div class="container">
+        <div class="logo">LYNX</div>
+        <div class="message">Content coming soon</div>
+        <div class="divider"></div>
+        <div class="footer">&copy; 2025 Lynx Portfolio</div>
+    </div>
+      
+    </body>
+
     </>
   );
 }
