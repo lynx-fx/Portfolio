@@ -1,21 +1,28 @@
-import React from 'react';
-import './styles/style.css'
+import "./styles.css"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
+import TerminalSection from "./components/TerminalSection"
+import SkillsSection from "./components/SkillsSection"
 
 function App() {
   return (
-    <>
-    <body>
-    <div class="container">
-        <div class="logo">LYNX</div>
-        <div class="message">Content coming soon</div>
-        <div class="divider"></div>
-        <div class="footer">&copy; 2025 Lynx Portfolio</div>
+    <div className="app">
+      <Navbar />
+      <main className="main-content">
+        <TerminalSection />
+        <section className="about-preview">
+          <h2>About Me</h2>
+          <p>
+            I'm a passionate web developer and cybersecurity enthusiast with a focus on building secure, efficient web
+            applications. My expertise spans front-end development, back-end systems, and security implementation.
+          </p>
+          <button className="btn">Learn More</button>
+        </section>
+        <SkillsSection />
+      </main>
+      <Footer />
     </div>
-      
-    </body>
-
-    </>
-  );
+  )
 }
 
-export default App;
+export default App
