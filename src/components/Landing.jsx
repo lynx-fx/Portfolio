@@ -4,6 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Download, ChevronLeft, ChevronRight } from "lucide-react";
 import "../styles/Landing.css";
 
+// TODO: Update images of projects
+// TODO: Update images of technologies
+
 export default function Landing() {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -44,7 +47,13 @@ export default function Landing() {
     {
       name: "JavaScript",
       description: "A programming language",
-      icon: "TS",
+      icon: "JS",
+      color: "blue",
+    },
+    {
+      name: "Express",
+      description: "JS Backend Framework",
+      icon: "⚛",
       color: "blue",
     },
     {
@@ -190,7 +199,7 @@ export default function Landing() {
             isLoaded ? "animate-fade-in-up" : "animate-hidden"
           }`}
         >
-          Hi, I'm Anup, I create intuitive and highly functional web
+          Hi, I'm Sudarshan, I create intuitive and highly functional web
           applications.
         </p>
 
@@ -205,10 +214,7 @@ export default function Landing() {
               <ArrowRight className="btn-icon-right" />
             </button>
           </a>
-          <a
-            href="https://github.com/lynx-fx"
-            target="_blank"
-          >
+          <a href="https://github.com/lynx-fx" target="_blank">
             <button className="btn btn-outline btn-with-icon">
               <img
                 src="https://www.svgrepo.com/show/312259/github.svg"
@@ -238,9 +244,8 @@ export default function Landing() {
                 : "animate-hidden"
             }`}
           >
-            I'm proficient in a range of modern technologies that empower me to
-            build highly functional solutions. These are some of my main
-            technologies.
+            I leverage modern technologies to create innovative and efficient
+            solutions — here are some I work with most.
           </p>
 
           <div className="tech-grid">
