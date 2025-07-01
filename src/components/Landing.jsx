@@ -1,5 +1,5 @@
-import "../styles/landing.css"
-import { ArrowRight, Download } from "lucide-react"
+import "../styles/landing.css";
+import { ArrowRight, Download } from "lucide-react";
 
 export default function Landing() {
   return (
@@ -10,13 +10,13 @@ export default function Landing() {
           <a href="#" className="nav-link active">
             Home
           </a>
-          <a href="#" className="nav-link">
+          <a href="#work" className="nav-link">
             Work
           </a>
-          <a href="#" className="nav-link">
+          <a href="#about" className="nav-link">
             About
           </a>
-          <a href="#" className="nav-link">
+          <a href="#footer" className="nav-link">
             Contact
           </a>
         </div>
@@ -25,84 +25,70 @@ export default function Landing() {
       {/* Hero Section */}
       <div className="hero-section">
         {/* Based in Serbia */}
-        <div className="hero-location">Based in Serbia</div>
+        <div className="hero-location">Based in Nepal</div>
 
         {/* Main Heading */}
         <h1 className="hero-title">
-          Quality{" "}
-          <span className="hero-title-accent">
-            Design & Web
-            <br />
-            Development
-          </span>{" "}
-          Synergy
+          Bridging <span className="hero-title-accent">Visual Elegance</span>{" "}
+          with <span className="hero-title-accent">Code Logic,</span>{" "}
+          seamlessly.
         </h1>
 
         {/* Subtitle */}
         <p className="hero-subtitle">
-          Hi, I'm Andrija, I create intuitive, visually stunning and highly functional web applications.
+          Hi, I'm Anup, I create intuitive and highly functional web
+          applications.
         </p>
 
         {/* Action Buttons */}
         <div className="hero-buttons">
-          <button className="btn btn-outline btn-lg">
-            See My Work
-            <ArrowRight className="btn-icon" />
-          </button>
+          <a href="#work">
+            <button className="btn btn-outline btn-lg">
+              See My Work
+              <ArrowRight className="btn-icon" />
+            </button>
+          </a>
           <button className="btn btn-outline btn-lg">
             <Download className="btn-icon-left" />
             Download CV
           </button>
         </div>
 
-        {/* Profile Avatars */}
-        <div className="hero-avatars">
-          <div className="avatar avatar-primary">B</div>
-          <div className="avatar">A</div>
-          <div className="avatar">C</div>
-          <div className="avatar">D</div>
-        </div>
-
         {/* Technologies Section */}
-        <div className="technologies-section">
+        <div className="technologies-section" id="about">
           <h2 className="section-title">Current technologies</h2>
           <p className="section-description">
-            I'm proficient in a range of modern technologies that empower me to build highly functional solutions. These
-            are some of my main technologies.
+            I'm proficient in a range of modern technologies that empower me to
+            build highly functional solutions. These are some of my main
+            technologies.
           </p>
 
           <div className="tech-grid">
             {/* Row 1 */}
             <div className="tech-card">
-              <div className="tech-icon tech-icon-figma">
-                <div className="icon-shape icon-square"></div>
-              </div>
-              <h3 className="tech-name">Figma</h3>
-              <p className="tech-description">Design Tool</p>
-            </div>
-
-            <div className="tech-card">
               <div className="tech-icon tech-icon-typescript">TS</div>
-              <h3 className="tech-name">TypeScript</h3>
-              <p className="tech-description">JavaScript but better</p>
+              <h3 className="tech-name">JavaScript</h3>
+              <p className="tech-description">A programming language</p>
             </div>
 
             <div className="tech-card">
               <div className="tech-icon tech-icon-react">
-                <div className="icon-shape icon-circle" style={{ border: "2px solid white", position: "relative" }}>
+                <div
+                  className="icon-shape icon-circle"
+                  style={{ border: "2px solid white", position: "relative" }}
+                >
                   <div
-                    style={{ position: "absolute", inset: "4px", border: "1px solid white", borderRadius: "50%" }}
+                    style={{
+                      position: "absolute",
+                      inset: "4px",
+                      border: "1px solid white",
+                      borderRadius: "50%",
+                    }}
                   ></div>
                 </div>
               </div>
               <h3 className="tech-name">React</h3>
               <p className="tech-description">JavaScript Library</p>
-            </div>
-
-            <div className="tech-card">
-              <div className="tech-icon tech-icon-nextjs">N</div>
-              <h3 className="tech-name">Next.JS</h3>
-              <p className="tech-description">React framework</p>
             </div>
 
             {/* Row 2 */}
@@ -123,25 +109,25 @@ export default function Landing() {
             </div>
 
             <div className="tech-card">
-              <div className="tech-icon tech-icon-supabase">
-                <div style={{ width: "1rem", height: "1.5rem", backgroundColor: "white" }}></div>
-              </div>
-              <h3 className="tech-name">Supabase</h3>
-              <p className="tech-description">Backend tool</p>
-            </div>
-
-            <div className="tech-card">
               <div className="tech-icon tech-icon-nodejs">JS</div>
               <h3 className="tech-name">Node.JS</h3>
-              <p className="tech-description">Backend</p>
+              <p className="tech-description">Runtime Environment</p>
             </div>
 
             {/* Row 3 */}
             <div className="tech-card">
               <div className="tech-icon tech-icon-mongodb">
-                <div className="icon-shape icon-circle" style={{ position: "relative" }}>
+                <div
+                  className="icon-shape icon-circle"
+                  style={{ position: "relative" }}
+                >
                   <div
-                    style={{ position: "absolute", inset: "8px", backgroundColor: "#10b981", borderRadius: "50%" }}
+                    style={{
+                      position: "absolute",
+                      inset: "8px",
+                      backgroundColor: "#10b981",
+                      borderRadius: "50%",
+                    }}
                   ></div>
                 </div>
               </div>
@@ -153,21 +139,13 @@ export default function Landing() {
               <div className="tech-icon tech-icon-prisma">
                 <div className="icon-shape icon-diamond"></div>
               </div>
-              <h3 className="tech-name">Prisma</h3>
-              <p className="tech-description">ORM</p>
-            </div>
-
-            <div className="tech-card">
-              <div className="tech-icon tech-icon-postgresql">
-                <div className="icon-shape icon-square"></div>
-              </div>
-              <h3 className="tech-name">PostgreSQL</h3>
-              <p className="tech-description">OR database system</p>
+              <h3 className="tech-name">MySql</h3>
+              <p className="tech-description">SQL database</p>
             </div>
           </div>
 
           {/* Portfolio Section */}
-          <div className="portfolio-header">
+          <div className="portfolio-header" id="work">
             <h2 className="section-title">My portfolio</h2>
             <button className="btn btn-outline">
               All Projects
@@ -190,7 +168,7 @@ export default function Landing() {
                   </div>
                 </div>
               </div>
-              <h3 className="project-title">Shoptidy</h3>
+              <h3 className="project-title">CardKeeper</h3>
               <div className="project-tags">
                 <span className="project-tag">TypeScript</span>
                 <span className="project-tag">React</span>
@@ -216,15 +194,27 @@ export default function Landing() {
                     ></div>
                     <div className="mockup-chart"></div>
                     <div className="mockup-bars">
-                      <div className="mockup-bar" style={{ backgroundColor: "#60a5fa" }}></div>
-                      <div className="mockup-bar" style={{ backgroundColor: "#3b82f6" }}></div>
-                      <div className="mockup-bar" style={{ backgroundColor: "#93c5fd" }}></div>
-                      <div className="mockup-bar" style={{ backgroundColor: "#2563eb" }}></div>
+                      <div
+                        className="mockup-bar"
+                        style={{ backgroundColor: "#60a5fa" }}
+                      ></div>
+                      <div
+                        className="mockup-bar"
+                        style={{ backgroundColor: "#3b82f6" }}
+                      ></div>
+                      <div
+                        className="mockup-bar"
+                        style={{ backgroundColor: "#93c5fd" }}
+                      ></div>
+                      <div
+                        className="mockup-bar"
+                        style={{ backgroundColor: "#2563eb" }}
+                      ></div>
                     </div>
                   </div>
                 </div>
               </div>
-              <h3 className="project-title">ExpenseTracker</h3>
+              <h3 className="project-title">TimeNest</h3>
               <div className="project-tags">
                 <span className="project-tag">TypeScript</span>
                 <span className="project-tag">React</span>
@@ -249,20 +239,24 @@ export default function Landing() {
         {/* Call to Action */}
         <div className="contact-cta">
           <h2 className="contact-title">
-            Like what you see? Reach out <span className="contact-title-accent">via email</span> to collaborate!
+            Like what you see? Reach out{" "}
+            <span className="contact-title-accent">via email</span> to
+            collaborate!
           </h2>
-          <button className="btn btn-outline btn-lg">Schedule call</button>
+          <a href="mailto:anupbhujel07@gmail.com">
+            <button className="btn btn-outline btn-lg">Mail Now</button>
+          </a>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="footer" id="footer">
         <div className="footer-content">
           <div className="footer-grid">
             {/* Left Column - Name and Copyright */}
             <div className="footer-brand">
-              <h3>Andrija Djordjevic</h3>
-              <p>© 2024 | All rights reserved.</p>
+              <h3>Anup Bhujel</h3>
+              <p>© 2025 | All rights reserved.</p>
             </div>
 
             {/* Navigate Column */}
@@ -273,13 +267,13 @@ export default function Landing() {
                   <a href="#">Home</a>
                 </li>
                 <li>
-                  <a href="#">Work</a>
+                  <a href="#work">Work</a>
                 </li>
                 <li>
-                  <a href="#">About</a>
+                  <a href="#about">About</a>
                 </li>
                 <li>
-                  <a href="#">Contact</a>
+                  <a href="#footer">Contact</a>
                 </li>
               </ul>
             </div>
@@ -289,16 +283,25 @@ export default function Landing() {
               <h4>Projects</h4>
               <ul className="footer-links">
                 <li>
-                  <a href="#">Shoptidy</a>
+                  <a
+                    href="https://cardkeeper-lynx.netlify.app/"
+                    target="_blank"
+                  >
+                    Cardkeeper
+                  </a>
                 </li>
                 <li>
-                  <a href="#">SocialSphere</a>
+                  <a href="https://timenest-lynx.netlify.app/" target="_blank">
+                    TimeNest
+                  </a>
                 </li>
                 <li>
-                  <a href="#">NextCut</a>
-                </li>
-                <li>
-                  <a href="#">NextFood</a>
+                  <a
+                    href="https://github.com/lynx-fx/Bash-for-deauth-attack-on-wifi"
+                    target="_blank"
+                  >
+                    Wifi DeAuther
+                  </a>
                 </li>
               </ul>
             </div>
@@ -308,13 +311,22 @@ export default function Landing() {
               <h4>Socials</h4>
               <ul className="footer-links">
                 <li>
-                  <a href="#">LinkedIn</a>
+                  <a
+                    href="https://www.linkedin.com/in/anup-bhujel-2b1381303/"
+                    target="_blank"
+                  >
+                    LinkedIn
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Github</a>
+                  <a href="https://github.com/lynx-fx" target="_blank">
+                    Github
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Instagram</a>
+                  <a href="https://www.instagram.com/" target="_blank">
+                    Instagram
+                  </a>
                 </li>
               </ul>
             </div>
@@ -322,5 +334,5 @@ export default function Landing() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
