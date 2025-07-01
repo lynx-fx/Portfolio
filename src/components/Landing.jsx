@@ -474,7 +474,7 @@ export default function LandingPage() {
         <div className="footer-content">
           <div className="footer-grid">
             <div className="footer-brand">
-              <h3 className="footer-brand-title">Anup Bhujel</h3>
+              <h3 className="footer-brand-title">Sudarshan</h3>
               <p className="footer-brand-text">© 2025 | All rights reserved.</p>
             </div>
 
