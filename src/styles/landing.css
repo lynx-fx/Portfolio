@@ -828,6 +828,7 @@
 }
 
 .footer-link {
+  display: inline-block;
   color: #9ca3af;
   text-decoration: none;
   transition: all 0.3s ease;
