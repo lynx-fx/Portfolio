@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState, useEffect, useRef } from "react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   SiJavascript,
   SiReact,
@@ -14,28 +14,28 @@ import {
   SiGithub,
   SiLinkedin,
   SiInstagram,
-} from "react-icons/si"
-import "../styles/landing.css"
+} from "react-icons/si";
+import "../styles/landing.css";
 
 export default function LandingPage() {
-  const [isNavVisible, setIsNavVisible] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
-  const [currentProjectIndex, setCurrentProjectIndex] = useState(0)
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [visibleSections, setVisibleSections] = useState({
     about: false,
     work: false,
     contact: false,
-  })
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const [isDragging, setIsDragging] = useState(false)
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
-  const [dragOffset, setDragOffset] = useState(0)
+  });
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [dragOffset, setDragOffset] = useState(0);
 
-  const techRef = useRef(null)
-  const projectsRef = useRef(null)
-  const contactRef = useRef(null)
-  const carouselRef = useRef(null)
+  const techRef = useRef(null);
+  const projectsRef = useRef(null);
+  const contactRef = useRef(null);
+  const carouselRef = useRef(null);
 
   const projects = [
     {
@@ -43,23 +43,23 @@ export default function LandingPage() {
       title: "CardKeeper",
       tags: ["Express", "React", "Node", "MongoDB"],
       url: "https://cardkeeper-lynx.netlify.app/",
-      mockupType: "light",
+      src: "/CardKeeper.png",
     },
     {
       id: 2,
       title: "TimeNest",
       tags: ["Express", "React", "Node", "MongoDB"],
       url: "https://timenest-lynx.netlify.app/",
-      mockupType: "dark",
+      src: "/TimeNest.png",
     },
     {
       id: 3,
       title: "Wifi DeAuther",
       tags: ["Shell"],
       url: "https://github.com/lynx-fx/Bash-for-deauth-attack-on-wifi",
-      mockupType: "light",
+      src: "/deauther.png",
     },
-  ]
+  ];
 
   const technologies = [
     {
@@ -110,158 +110,167 @@ export default function LandingPage() {
       icon: SiMysql,
       color: "blue",
     },
-  ]
+  ];
 
   // Initialize animations on mount
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoaded(true)
-    }, 100)
-    return () => clearTimeout(timer)
-  }, [])
+      setIsLoaded(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Scroll-based navigation visibility
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== "undefined") {
         if (window.scrollY > lastScrollY && window.scrollY > 100) {
-          setIsNavVisible(false)
+          setIsNavVisible(false);
         } else {
-          setIsNavVisible(true)
+          setIsNavVisible(true);
         }
-        setLastScrollY(window.scrollY)
+        setLastScrollY(window.scrollY);
       }
-    }
+    };
 
     if (typeof window !== "undefined") {
-      window.addEventListener("scroll", controlNavbar)
+      window.addEventListener("scroll", controlNavbar);
       return () => {
-        window.removeEventListener("scroll", controlNavbar)
-      }
+        window.removeEventListener("scroll", controlNavbar);
+      };
     }
-  }, [lastScrollY])
+  }, [lastScrollY]);
 
   // Simple scroll detection
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY
-      const windowHeight = window.innerHeight
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
 
       // Check each section only once
       if (!visibleSections.about && techRef.current) {
-        const rect = techRef.current.getBoundingClientRect()
+        const rect = techRef.current.getBoundingClientRect();
         if (rect.top < windowHeight * 0.8) {
-          setVisibleSections((prev) => ({ ...prev, about: true }))
+          setVisibleSections((prev) => ({ ...prev, about: true }));
         }
       }
 
       if (!visibleSections.work && projectsRef.current) {
-        const rect = projectsRef.current.getBoundingClientRect()
+        const rect = projectsRef.current.getBoundingClientRect();
         if (rect.top < windowHeight * 0.8) {
-          setVisibleSections((prev) => ({ ...prev, work: true }))
+          setVisibleSections((prev) => ({ ...prev, work: true }));
         }
       }
 
       if (!visibleSections.contact && contactRef.current) {
-        const rect = contactRef.current.getBoundingClientRect()
+        const rect = contactRef.current.getBoundingClientRect();
         if (rect.top < windowHeight * 0.8) {
-          setVisibleSections((prev) => ({ ...prev, contact: true }))
+          setVisibleSections((prev) => ({ ...prev, contact: true }));
         }
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    handleScroll() // Check initial state
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial state
 
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [visibleSections])
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [visibleSections]);
 
   // Carousel navigation functions
   const nextProject = () => {
-    if (isTransitioning) return
-    setIsTransitioning(true)
-    setCurrentProjectIndex((prev) => (prev + 1) % projects.length)
-    setTimeout(() => setIsTransitioning(false), 500)
-  }
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentProjectIndex((prev) => (prev + 1) % projects.length);
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
 
   const prevProject = () => {
-    if (isTransitioning) return
-    setIsTransitioning(true)
-    setCurrentProjectIndex((prev) => (prev - 1 + projects.length) % projects.length)
-    setTimeout(() => setIsTransitioning(false), 500)
-  }
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentProjectIndex(
+      (prev) => (prev - 1 + projects.length) % projects.length
+    );
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
 
   const goToProject = (index) => {
-    if (isTransitioning || index === currentProjectIndex) return
-    setIsTransitioning(true)
-    setCurrentProjectIndex(index)
-    setTimeout(() => setIsTransitioning(false), 500)
-  }
+    if (isTransitioning || index === currentProjectIndex) return;
+    setIsTransitioning(true);
+    setCurrentProjectIndex(index);
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
 
   // Drag handlers
   const handleDragStart = (e) => {
-    if (isTransitioning) return
-    setIsDragging(true)
-    const clientX = e.type === "mousedown" ? e.clientX : e.touches[0].clientX
-    const clientY = e.type === "mousedown" ? e.clientY : e.touches[0].clientY
-    setDragStart({ x: clientX, y: clientY })
-    setDragOffset(0)
-  }
+    if (isTransitioning) return;
+    setIsDragging(true);
+    const clientX = e.type === "mousedown" ? e.clientX : e.touches[0].clientX;
+    const clientY = e.type === "mousedown" ? e.clientY : e.touches[0].clientY;
+    setDragStart({ x: clientX, y: clientY });
+    setDragOffset(0);
+  };
 
   const handleDragMove = (e) => {
-    if (!isDragging) return
-    e.preventDefault()
-    const clientX = e.type === "mousemove" ? e.clientX : e.touches[0].clientX
-    const deltaX = clientX - dragStart.x
-    setDragOffset(deltaX)
-  }
+    if (!isDragging) return;
+    e.preventDefault();
+    const clientX = e.type === "mousemove" ? e.clientX : e.touches[0].clientX;
+    const deltaX = clientX - dragStart.x;
+    setDragOffset(deltaX);
+  };
 
   const handleDragEnd = () => {
-    if (!isDragging) return
-    setIsDragging(false)
+    if (!isDragging) return;
+    setIsDragging(false);
 
-    const threshold = 100 // Minimum drag distance to trigger navigation
+    const threshold = 100; // Minimum drag distance to trigger navigation
     if (Math.abs(dragOffset) > threshold) {
       if (dragOffset > 0) {
-        prevProject()
+        prevProject();
       } else {
-        nextProject()
+        nextProject();
       }
     }
-    setDragOffset(0)
-  }
+    setDragOffset(0);
+  };
 
   // Add event listeners for drag
   useEffect(() => {
-    const carousel = carouselRef.current
-    if (!carousel) return
+    const carousel = carouselRef.current;
+    if (!carousel) return;
 
-    const handleMouseMove = (e) => handleDragMove(e)
-    const handleMouseUp = () => handleDragEnd()
-    const handleTouchMove = (e) => handleDragMove(e)
-    const handleTouchEnd = () => handleDragEnd()
+    const handleMouseMove = (e) => handleDragMove(e);
+    const handleMouseUp = () => handleDragEnd();
+    const handleTouchMove = (e) => handleDragMove(e);
+    const handleTouchEnd = () => handleDragEnd();
 
     if (isDragging) {
-      document.addEventListener("mousemove", handleMouseMove)
-      document.addEventListener("mouseup", handleMouseUp)
-      document.addEventListener("touchmove", handleTouchMove, { passive: false })
-      document.addEventListener("touchend", handleTouchEnd)
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+      document.addEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
+      document.addEventListener("touchend", handleTouchEnd);
     }
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove)
-      document.removeEventListener("mouseup", handleMouseUp)
-      document.removeEventListener("touchmove", handleTouchMove)
-      document.removeEventListener("touchend", handleTouchEnd)
-    }
-  }, [isDragging, dragStart, dragOffset])
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [isDragging, dragStart, dragOffset]);
 
-  const visibleProjects = [projects[currentProjectIndex], projects[(currentProjectIndex + 1) % projects.length]]
+  const visibleProjects = [
+    projects[currentProjectIndex],
+    projects[(currentProjectIndex + 1) % projects.length],
+  ];
 
   return (
     <div className="portfolio-container">
       {/* Fixed Navigation */}
-      <nav className={`navigation ${isNavVisible ? "nav-visible" : "nav-hidden"}`}>
+      <nav
+        className={`navigation ${isNavVisible ? "nav-visible" : "nav-hidden"}`}
+      >
         <div className="nav-wrapper">
           <div className="nav-menu">
             <a href="#" className="nav-link nav-link-active">
@@ -282,27 +291,44 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <div className="hero-section">
-        <div className={`hero-location ${isLoaded ? "visible" : ""}`} style={{ animationDelay: "0.2s" }}>
+        <div
+          className={`hero-location ${isLoaded ? "visible" : ""}`}
+          style={{ animationDelay: "0.2s" }}
+        >
           Based in Nepal
         </div>
 
-        <h1 className={`hero-title ${isLoaded ? "visible" : ""}`} style={{ animationDelay: "0.4s" }}>
+        <h1
+          className={`hero-title ${isLoaded ? "visible" : ""}`}
+          style={{ animationDelay: "0.4s" }}
+        >
           Bridging <span className="hero-accent">Visual Elegance</span> with{" "}
           <span className="hero-accent">Code Logic,</span> seamlessly.
         </h1>
 
-        <p className={`hero-subtitle ${isLoaded ? "visible" : ""}`} style={{ animationDelay: "0.6s" }}>
-          Hi, I'm Sudarshan, I create intuitive and highly functional web applications.
+        <p
+          className={`hero-subtitle ${isLoaded ? "visible" : ""}`}
+          style={{ animationDelay: "0.6s" }}
+        >
+          Hi, I'm Sudarshan, I create intuitive and highly functional web
+          applications.
         </p>
 
-        <div className={`hero-buttons ${isLoaded ? "visible" : ""}`} style={{ animationDelay: "0.8s" }}>
+        <div
+          className={`hero-buttons ${isLoaded ? "visible" : ""}`}
+          style={{ animationDelay: "0.8s" }}
+        >
           <a href="#work">
             <button className="btn btn-outline btn-with-icon">
               <span>See My Work</span>
               <ArrowRight className="btn-icon-right" />
             </button>
           </a>
-          <a href="https://github.com/lynx-fx" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/lynx-fx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <button className="btn btn-outline btn-with-icon">
               <SiGithub className="btn-icon-left" />
               <span>GitHub</span>
@@ -312,22 +338,32 @@ export default function LandingPage() {
 
         {/* Technologies Section */}
         <div ref={techRef} className="technologies-section" id="about">
-          <h2 className={`section-title ${visibleSections.about ? "visible" : ""}`}>Current technologies</h2>
+          <h2
+            className={`section-title ${
+              visibleSections.about ? "visible" : ""
+            }`}
+          >
+            Current technologies
+          </h2>
           <p
-            className={`section-description ${visibleSections.about ? "visible" : ""}`}
+            className={`section-description ${
+              visibleSections.about ? "visible" : ""
+            }`}
             style={{ animationDelay: "0.2s" }}
           >
-            I leverage modern technologies to create innovative and efficient solutions — here are some I work with
-            most.
+            I leverage modern technologies to create innovative and efficient
+            solutions — here are some I work with most.
           </p>
 
           <div className="tech-grid">
             {technologies.map((tech, index) => {
-              const IconComponent = tech.icon
+              const IconComponent = tech.icon;
               return (
                 <div
                   key={index}
-                  className={`tech-card tech-card-${tech.color} ${visibleSections.about ? "visible" : ""}`}
+                  className={`tech-card tech-card-${tech.color} ${
+                    visibleSections.about ? "visible" : ""
+                  }`}
                   style={{ animationDelay: `${0.4 + index * 0.1}s` }}
                 >
                   <div className="tech-card-content">
@@ -340,19 +376,39 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
 
           {/* Portfolio Section */}
-          <div ref={projectsRef} className={`portfolio-section ${visibleSections.work ? "visible" : ""}`} id="work">
+          <div
+            ref={projectsRef}
+            className={`portfolio-section ${
+              visibleSections.work ? "visible" : ""
+            }`}
+            id="work"
+          >
             <div className="portfolio-header">
-          <h2 className={`section-title ${visibleSections.about ? "visible" : ""}`}>My Projects</h2>
+              <h2
+                className={`section-title ${
+                  visibleSections.about ? "visible" : ""
+                }`}
+              >
+                My Projects
+              </h2>
               <div className="portfolio-controls">
-                <button onClick={prevProject} disabled={isTransitioning} className="control-btn">
+                <button
+                  onClick={prevProject}
+                  disabled={isTransitioning}
+                  className="control-btn"
+                >
                   <ChevronLeft className="control-icon" />
                 </button>
-                <button onClick={nextProject} disabled={isTransitioning} className="control-btn">
+                <button
+                  onClick={nextProject}
+                  disabled={isTransitioning}
+                  className="control-btn"
+                >
                   <ChevronRight className="control-icon" />
                 </button>
               </div>
@@ -373,41 +429,13 @@ export default function LandingPage() {
                 {visibleProjects.map((project, index) => (
                   <div
                     key={`${project.id}-${currentProjectIndex}-${index}`}
-                    className={`project-card ${isTransitioning ? "project-transitioning" : ""}`}
+                    className={`project-card ${
+                      isTransitioning ? "project-transitioning" : ""
+                    }`}
                     style={{ animationDelay: `${index * 0.2}s` }}
                   >
                     <div className="project-mockup">
-                      <div
-                        className={`project-laptop ${project.mockupType === "light" ? "laptop-light" : "laptop-dark"}`}
-                      >
-                        <div
-                          className={`project-screen ${
-                            project.mockupType === "light" ? "screen-light" : "screen-dark"
-                          }`}
-                        >
-                          {project.mockupType === "light" ? (
-                            <div className="mockup-content-light">
-                              <div className="mockup-header-light"></div>
-                              <div className="mockup-grid-light">
-                                <div className="mockup-item-light"></div>
-                                <div className="mockup-item-light"></div>
-                                <div className="mockup-item-light"></div>
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="mockup-content-dark">
-                              <div className="mockup-header-dark"></div>
-                              <div className="mockup-chart"></div>
-                              <div className="mockup-bars">
-                                <div className="mockup-bar bar-1"></div>
-                                <div className="mockup-bar bar-2"></div>
-                                <div className="mockup-bar bar-3"></div>
-                                <div className="mockup-bar bar-4"></div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
+                        <img src={project.src} height={200} alt={project.title} />
                     </div>
 
                     <h3 className="project-title">{project.title}</h3>
@@ -420,7 +448,11 @@ export default function LandingPage() {
                       ))}
                     </div>
 
-                    <a href={project.url} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <button className="btn btn-primary">
                         <span>View Project</span>
                       </button>
@@ -435,7 +467,9 @@ export default function LandingPage() {
               {projects.map((_, index) => (
                 <button
                   key={index}
-                  className={`pagination-dot ${index === currentProjectIndex ? "active" : ""}`}
+                  className={`pagination-dot ${
+                    index === currentProjectIndex ? "active" : ""
+                  }`}
                   onClick={() => goToProject(index)}
                   disabled={isTransitioning}
                   aria-label={`Go to project ${index + 1}`}
@@ -453,13 +487,15 @@ export default function LandingPage() {
 
       {/* Contact Section */}
       <div ref={contactRef} className="contact-section">
-
         <div
-          className={`contact-content ${visibleSections.contact ? "visible" : ""}`}
+          className={`contact-content ${
+            visibleSections.contact ? "visible" : ""
+          }`}
           style={{ animationDelay: "0.2s" }}
         >
           <h2 className="contact-title">
-            Like what you see? Reach out <span className="contact-accent">via email</span> to collaborate!
+            Like what you see? Reach out{" "}
+            <span className="contact-accent">via email</span> to collaborate!
           </h2>
           <a href="mailto:anupbhujel07@gmail.com">
             <button className="btn btn-outline contact-btn">
@@ -518,7 +554,12 @@ export default function LandingPage() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://timenest-lynx.netlify.app/" target="_blank" className="footer-link" rel="noreferrer">
+                  <a
+                    href="https://timenest-lynx.netlify.app/"
+                    target="_blank"
+                    className="footer-link"
+                    rel="noreferrer"
+                  >
                     TimeNest
                   </a>
                 </li>
@@ -532,7 +573,6 @@ export default function LandingPage() {
                     Wifi DeAuther
                   </a>
                 </li>
-                
               </ul>
             </div>
 
@@ -578,5 +618,5 @@ export default function LandingPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

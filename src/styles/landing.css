@@ -7,6 +7,14 @@
   caret-color: transparent;
 }
 
+img {
+  user-select: none; /* Prevent text selection */
+  -webkit-user-drag: none; /* Prevent dragging in WebKit browsers */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -496,11 +504,24 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.9s ease;
 }
 
 .project-card:hover .project-mockup {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.project-mockup img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.project-card :hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }
 
 .project-laptop {
@@ -530,97 +551,6 @@
   height: 100%;
   border-radius: 0.5rem;
   padding: 1rem;
-}
-
-.screen-light {
-  background-color: #f3f4f6;
-}
-
-.screen-dark {
-  background-color: #111827;
-}
-
-.mockup-content-light,
-.mockup-content-dark {
-  width: 100%;
-  height: 100%;
-}
-
-.mockup-header-light {
-  width: 100%;
-  height: 2rem;
-  background-color: #d1d5db;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
-  animation: pulse 2s infinite;
-}
-
-.mockup-header-dark {
-  width: 100%;
-  height: 1.5rem;
-  background-color: #4b5563;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
-  animation: pulse 2s infinite;
-}
-
-.mockup-grid-light {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-}
-
-.mockup-item-light {
-  aspect-ratio: 1;
-  background-color: #9ca3af;
-  border-radius: 0.25rem;
-  animation: pulse 2s infinite;
-}
-
-.mockup-item-light:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.mockup-item-light:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-.mockup-chart {
-  width: 100%;
-  height: 4rem;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-  border-radius: 0.25rem;
-  margin-bottom: 0.5rem;
-  opacity: 0.8;
-  animation: pulse 2s infinite;
-}
-
-.mockup-bars {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.25rem;
-}
-
-.mockup-bar {
-  background-color: #3b82f6;
-  border-radius: 0.125rem;
-  animation: pulse 2s infinite;
-}
-
-.bar-1 {
-  height: 2rem;
-}
-.bar-2 {
-  height: 3rem;
-  animation-delay: 0.1s;
-}
-.bar-3 {
-  height: 1.5rem;
-  animation-delay: 0.2s;
-}
-.bar-4 {
-  height: 2.5rem;
-  animation-delay: 0.3s;
 }
 
 .project-title {
