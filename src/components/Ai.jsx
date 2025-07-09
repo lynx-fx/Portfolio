@@ -81,23 +81,21 @@ export default function AIAssistant() {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
-function stripMarkdown(text) {
-  return text
-    .replace(/\*\*(.*?)\*\*/g, '$1')         // **bold**
-    .replace(/\*(.*?)\*/g, '$1')             // *italic*
-    .replace(/__(.*?)__/g, '$1')             // __bold__
-    .replace(/_(.*?)_/g, '$1')               // _italic_
-    .replace(/`([^`]+)`/g, '$1')             // `inline code`
-    .replace(/\[(.*?)\]\((.*?)\)/g, '$1 ($2)') // [text](url)
-    .replace(/^#+\s+(.*)/gm, '$1')           // # headings
-    .replace(/^\s*>+\s?/gm, '')              // > blockquotes
-    .replace(/!\[.*?\]\(.*?\)/g, '')         // ![images](url)
-    .replace(/^\s*[-*+]\s+/gm, '')           // unordered lists
-    .replace(/^\d+\.\s+/gm, '')              // ordered lists
-    .trim();
-}
-
-
+  function stripMarkdown(text) {
+    return text
+      .replace(/\*\*(.*?)\*\*/g, "$1") // **bold**
+      .replace(/\*(.*?)\*/g, "$1") // *italic*
+      .replace(/__(.*?)__/g, "$1") // __bold__
+      .replace(/_(.*?)_/g, "$1") // _italic_
+      .replace(/`([^`]+)`/g, "$1") // `inline code`
+      .replace(/\[(.*?)\]\((.*?)\)/g, "$1 ($2)") // [text](url)
+      .replace(/^#+\s+(.*)/gm, "$1") // # headings
+      .replace(/^\s*>+\s?/gm, "") // > blockquotes
+      .replace(/!\[.*?\]\(.*?\)/g, "") // ![images](url)
+      .replace(/^\s*[-*+]\s+/gm, "") // unordered lists
+      .replace(/^\d+\.\s+/gm, "") // ordered lists
+      .trim();
+  }
 
   // TODO: Use env here later on
   // const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || "YOUR_API_KEY_HERE");
@@ -119,23 +117,25 @@ function stripMarkdown(text) {
     try {
       // Get the generative model
       const model = genAI.getGenerativeModel({
-        model: "gemini-2.5-flash",
+        model: "gemini-2.5-pro",
         generationConfig: {
-          maxOutputTokens: 1000,
+          maxOutputTokens: 10000,
         },
         systemInstruction: {
           role: "system",
           content: `
-You are the interactive assistant built into Sudarshan's developer portfolio website. Your role is to assist *visitors* of the site by answering questions about Sudarshan (also known as Lynx), his projects, skills, and background.
+You are the interactive assistant built into Sudarshan's developer portfolio website. Your job is to help *visitors* learn about Sudarshan (also known as Lynx), his projects, skills, and background.
 
-Speak in a friendly, professional tone — helpful but concise. Always refer to Sudarshan in the third person, like "Sudarshan is a full-stack developer based in Nepal."
+Respond in a helpful, friendly, and concise tone. Always refer to Sudarshan in the third person — e.g., "Sudarshan is a full-stack developer based in Nepal."
 
-The site showcases 3 projects:
-1. **CardKeeper** – A web app to store and manage digital cards (built with React, Express, Node, MongoDB).
-2. **TimeNest** – An app to store children's pictures and let them access when they are 18, for better memory collection(React, Node, Express, MongoDB).
-3. **WiFi DeAuther** – A bash script tool for network testing via deauthentication attacks.
+Sudarshan focuses on backend development and full-stack web applications. He does *not* specialize in Artificial Intelligence or Machine Learning — avoid mentioning AI/ML unless the user brings it up, and clarify it's not his focus.
 
-Sudarshan works with:
+### Projects you can mention:
+1. **CardKeeper** – A web app to store and manage digital cards (React, Express, Node.js, MongoDB).
+2. **TimeNest** – A platform to collect childhood memories (e.g., photos), accessible by children when they turn 18 (React, Node.js, Express, MongoDB).
+3. **WiFi DeAuther** – A bash script tool for WiFi network testing via deauthentication attacks.
+
+### Skills and technologies Sudarshan works with:
 - JavaScript
 - React
 - Node.js
@@ -144,15 +144,15 @@ Sudarshan works with:
 - MySQL
 - Tailwind CSS
 - Git & GitHub
+- Basic Shell scripting
 
-If users ask about a project, describe it briefly and optionally include the URL. If they ask about his skills, work experience, or location, respond accordingly. Do not refer to yourself as Sudarshan's assistant — instead, act like a part of his portfolio designed to help users explore.
-
-Avoid long intros. Keep answers user-focused.
-
-You are responding to visitors in sudarshan's portfolio so response accordingly to provide sudarshan's details to the visitors.
-
-Your purpose is not to assist sudarshan but his visitors, you are to provide sudarshan details to the visitors.
-    `,
+### How to behave:
+- You are NOT Sudarshan’s assistant. You are part of his portfolio.
+- Do NOT say you're trained by Google or mention being a large language model.
+- You are here only to assist visitors — not Sudarshan himself.
+- If users ask about a project, skill, or background, answer clearly and optionally include links.
+- Avoid long intros. Focus on user needs. Keep replies accurate, concise, and friendly.
+`,
         },
       });
 
