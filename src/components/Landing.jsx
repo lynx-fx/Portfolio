@@ -47,13 +47,20 @@ export default function LandingPage() {
     },
     {
       id: 2,
+      tittle: "Vanis",
+      tags: ["NextJs", "TailWind", "Express", "MongoDB"],
+      url: "https://vanis-lynxx.netlify.app/",
+      src: "/Vanis.png"
+    },
+    {
+      id: 3,
       title: "TimeNest",
       tags: ["Express", "React", "Node", "MongoDB"],
       url: "https://timenest-lynx.netlify.app/",
       src: "/TimeNest.png",
     },
     {
-      id: 3,
+      id: 4,
       title: "Wifi DeAuther",
       tags: ["Shell"],
       url: "https://github.com/lynx-fx/Bash-for-deauth-attack-on-wifi",
@@ -85,6 +92,12 @@ export default function LandingPage() {
       description: "CSS framework",
       icon: SiTailwindcss,
       color: "cyan-light",
+    },
+    {
+      name: "NextJs",
+      description: "React Framework",
+      icon: SiReact,
+      color: "purple",
     },
     {
       name: "Git",
@@ -435,7 +448,7 @@ export default function LandingPage() {
                     style={{ animationDelay: `${index * 0.2}s` }}
                   >
                     <div className="project-mockup">
-                        <img src={project.src} height={200} alt={project.title} />
+                      <img src={project.src} height={200} alt={project.title} />
                     </div>
 
                     <h3 className="project-title">{project.title}</h3>
