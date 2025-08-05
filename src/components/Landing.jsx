@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import {
@@ -30,8 +29,7 @@ export default function LandingPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  const [dragOffset, setDragOffset] = useState(0);
-
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const techRef = useRef(null);
   const projectsRef = useRef(null);
   const contactRef = useRef(null);
@@ -47,10 +45,10 @@ export default function LandingPage() {
     },
     {
       id: 2,
-      tittle: "Vanis",
+      title: "Vanis",
       tags: ["NextJs", "TailWind", "Express", "MongoDB"],
       url: "https://vanis-lynxx.netlify.app/",
-      src: "/Vanis.png"
+      src: "/Vanis.png",
     },
     {
       id: 3,
@@ -145,7 +143,6 @@ export default function LandingPage() {
         setLastScrollY(window.scrollY);
       }
     };
-
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", controlNavbar);
       return () => {
@@ -159,33 +156,32 @@ export default function LandingPage() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-
       // Check each section only once
+      // Adjusted the multiplier from 0.95 to 1.05 to trigger animations even later
       if (!visibleSections.about && techRef.current) {
         const rect = techRef.current.getBoundingClientRect();
-        if (rect.top < windowHeight * 0.8) {
+        if (rect.top < windowHeight * 1.05) {
+          // Trigger when the section is just entering the bottom of the viewport
           setVisibleSections((prev) => ({ ...prev, about: true }));
         }
       }
-
       if (!visibleSections.work && projectsRef.current) {
         const rect = projectsRef.current.getBoundingClientRect();
-        if (rect.top < windowHeight * 0.8) {
+        if (rect.top < windowHeight * 1.05) {
+          // Trigger when the section is just entering the bottom of the viewport
           setVisibleSections((prev) => ({ ...prev, work: true }));
         }
       }
-
       if (!visibleSections.contact && contactRef.current) {
         const rect = contactRef.current.getBoundingClientRect();
-        if (rect.top < windowHeight * 0.8) {
+        if (rect.top < windowHeight * 1.05) {
+          // Trigger when the section is just entering the bottom of the viewport
           setVisibleSections((prev) => ({ ...prev, contact: true }));
         }
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Check initial state
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [visibleSections]);
 
@@ -220,30 +216,41 @@ export default function LandingPage() {
     const clientX = e.type === "mousedown" ? e.clientX : e.touches[0].clientX;
     const clientY = e.type === "mousedown" ? e.clientY : e.touches[0].clientY;
     setDragStart({ x: clientX, y: clientY });
-    setDragOffset(0);
+    setDragOffset({ x: 0, y: 0 });
   };
 
   const handleDragMove = (e) => {
     if (!isDragging) return;
-    e.preventDefault();
+    // Prevent default to stop vertical scrolling when horizontal drag is detected
+    // e.preventDefault(); // This was causing issues with vertical scroll on mobile
+
     const clientX = e.type === "mousemove" ? e.clientX : e.touches[0].clientX;
+    const clientY = e.type === "mousemove" ? e.clientY : e.touches[0].clientY;
+
     const deltaX = clientX - dragStart.x;
-    setDragOffset(deltaX);
+    const deltaY = clientY - dragStart.y;
+
+    setDragOffset({ x: deltaX, y: deltaY });
   };
 
   const handleDragEnd = () => {
     if (!isDragging) return;
     setIsDragging(false);
 
-    const threshold = 100; // Minimum drag distance to trigger navigation
-    if (Math.abs(dragOffset) > threshold) {
-      if (dragOffset > 0) {
+    const horizontalThreshold = 100; // Minimum horizontal drag distance to trigger navigation
+    const dragDirectionThreshold = 2; // Horizontal movement must be at least 2x vertical movement
+
+    if (
+      Math.abs(dragOffset.x) > horizontalThreshold &&
+      Math.abs(dragOffset.x) > Math.abs(dragOffset.y) * dragDirectionThreshold
+    ) {
+      if (dragOffset.x > 0) {
         prevProject();
       } else {
         nextProject();
       }
     }
-    setDragOffset(0);
+    setDragOffset({ x: 0, y: 0 });
   };
 
   // Add event listeners for drag
@@ -260,11 +267,10 @@ export default function LandingPage() {
       document.addEventListener("mousemove", handleMouseMove);
       document.addEventListener("mouseup", handleMouseUp);
       document.addEventListener("touchmove", handleTouchMove, {
-        passive: false,
+        passive: false, // Use passive: false to allow preventDefault
       });
       document.addEventListener("touchend", handleTouchEnd);
     }
-
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
@@ -301,35 +307,31 @@ export default function LandingPage() {
           </div>
         </div>
       </nav>
-
       {/* Hero Section */}
       <div className="hero-section">
         <div
           className={`hero-location ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "0.2s" }}
+          style={{ animationDelay: "0.4s" }}
         >
           Based in Nepal
         </div>
-
         <h1
           className={`hero-title ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "0.4s" }}
+          style={{ animationDelay: "0.6s" }}
         >
           Bridging <span className="hero-accent">Visual Elegance</span> with{" "}
           <span className="hero-accent">Code Logic,</span> seamlessly.
         </h1>
-
         <p
           className={`hero-subtitle ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "0.6s" }}
+          style={{ animationDelay: "0.8s" }}
         >
           Hi, I'm Sudarshan, I create intuitive and highly functional web
           applications.
         </p>
-
         <div
           className={`hero-buttons ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "0.8s" }}
+          style={{ animationDelay: "1.0s" }}
         >
           <a href="#work">
             <button className="btn btn-outline btn-with-icon">
@@ -348,7 +350,6 @@ export default function LandingPage() {
             </button>
           </a>
         </div>
-
         {/* Technologies Section */}
         <div ref={techRef} className="technologies-section" id="about">
           <h2
@@ -362,12 +363,11 @@ export default function LandingPage() {
             className={`section-description ${
               visibleSections.about ? "visible" : ""
             }`}
-            style={{ animationDelay: "0.2s" }}
+            style={{ animationDelay: "0.4s" }}
           >
             I leverage modern technologies to create innovative and efficient
             solutions — here are some I work with most.
           </p>
-
           <div className="tech-grid">
             {technologies.map((tech, index) => {
               const IconComponent = tech.icon;
@@ -377,7 +377,7 @@ export default function LandingPage() {
                   className={`tech-card tech-card-${tech.color} ${
                     visibleSections.about ? "visible" : ""
                   }`}
-                  style={{ animationDelay: `${0.4 + index * 0.1}s` }}
+                  style={{ animationDelay: `${0.6 + index * 0.15}s` }}
                 >
                   <div className="tech-card-content">
                     <div className={`tech-icon tech-icon-${tech.color}`}>
@@ -392,7 +392,6 @@ export default function LandingPage() {
               );
             })}
           </div>
-
           {/* Portfolio Section */}
           <div
             ref={projectsRef}
@@ -426,7 +425,6 @@ export default function LandingPage() {
                 </button>
               </div>
             </div>
-
             {/* Drag-enabled carousel */}
             <div
               ref={carouselRef}
@@ -434,7 +432,7 @@ export default function LandingPage() {
               onMouseDown={handleDragStart}
               onTouchStart={handleDragStart}
               style={{
-                transform: `translateX(${dragOffset}px)`,
+                transform: `translateX(${dragOffset.x}px)`,
                 cursor: isDragging ? "grabbing" : "grab",
               }}
             >
@@ -448,11 +446,13 @@ export default function LandingPage() {
                     style={{ animationDelay: `${index * 0.2}s` }}
                   >
                     <div className="project-mockup">
-                      <img src={project.src} height={200} alt={project.title} />
+                      <img
+                        src={project.src || "/placeholder.svg"}
+                        height={200}
+                        alt={project.title}
+                      />
                     </div>
-
                     <h3 className="project-title">{project.title}</h3>
-
                     <div className="project-tags">
                       {project.tags.map((tag, tagIndex) => (
                         <span key={tagIndex} className="project-tag">
@@ -460,7 +460,6 @@ export default function LandingPage() {
                         </span>
                       ))}
                     </div>
-
                     <a
                       href={project.url}
                       target="_blank"
@@ -474,7 +473,6 @@ export default function LandingPage() {
                 ))}
               </div>
             </div>
-
             {/* Dot pagination */}
             <div className="carousel-pagination">
               {projects.map((_, index) => (
@@ -489,7 +487,6 @@ export default function LandingPage() {
                 />
               ))}
             </div>
-
             {/* Drag instruction */}
             <div className="drag-instruction">
               <span>← Drag or click dots to navigate →</span>
@@ -497,14 +494,13 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-
       {/* Contact Section */}
       <div ref={contactRef} className="contact-section">
         <div
           className={`contact-content ${
             visibleSections.contact ? "visible" : ""
           }`}
-          style={{ animationDelay: "0.2s" }}
+          style={{ animationDelay: "0.4s" }}
         >
           <h2 className="contact-title">
             Like what you see? Reach out{" "}
@@ -517,7 +513,6 @@ export default function LandingPage() {
           </a>
         </div>
       </div>
-
       {/* Footer */}
       <footer className="footer" id="footer">
         <div className="footer-content">
@@ -526,7 +521,6 @@ export default function LandingPage() {
               <h3 className="footer-brand-title">Sudarshan</h3>
               <p className="footer-brand-text">© 2025 | All rights reserved.</p>
             </div>
-
             <div className="footer-section">
               <h4 className="footer-section-title">Navigate</h4>
               <ul className="footer-links">
@@ -552,7 +546,6 @@ export default function LandingPage() {
                 </li>
               </ul>
             </div>
-
             <div className="footer-section">
               <h4 className="footer-section-title">Projects</h4>
               <ul className="footer-links">
@@ -588,7 +581,6 @@ export default function LandingPage() {
                 </li>
               </ul>
             </div>
-
             <div className="footer-section">
               <h4 className="footer-section-title">Socials</h4>
               <ul className="footer-links">
