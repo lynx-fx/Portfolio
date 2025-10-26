@@ -98,7 +98,7 @@ export default function AIAssistant() {
   }
 
   // TODO: Use env here later on
-  // const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || "YOUR_API_KEY_HERE");
+  // const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || "API_HERE");
   const genAI = new GoogleGenerativeAI(
     "AIzaSyAdarrEURQN-vo9rO0_liYkDCwM0cGEPno"
   );

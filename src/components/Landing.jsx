@@ -13,6 +13,7 @@ import {
   SiGithub,
   SiLinkedin,
   SiInstagram,
+  SiSocketdotio,
 } from "react-icons/si";
 import "../styles/landing.css";
 
@@ -52,10 +53,10 @@ export default function LandingPage() {
     },
     {
       id: 3,
-      title: "TimeNest",
-      tags: ["Express", "React", "Node", "MongoDB"],
-      url: "https://timenest-lynx.netlify.app/",
-      src: "/TimeNest.png",
+      title: "LiveChat",
+      tags: ["Express", "React", "Node", "MongoDB", "WebSocket"],
+      url: "https://livechat-lynx.netlify.app/",
+      src: "/LiveChat.png",
     },
     {
       id: 4,
@@ -63,6 +64,13 @@ export default function LandingPage() {
       tags: ["Shell"],
       url: "https://github.com/lynx-fx/Bash-for-deauth-attack-on-wifi",
       src: "/deauther.png",
+    },
+    {
+      id: 4,
+      title: "TimeNest",
+      tags: ["Express", "React", "Node", "MongoDB"],
+      url: "https://timenest-lynx.netlify.app/",
+      src: "/TimeNest.png",
     },
   ];
 
@@ -96,6 +104,12 @@ export default function LandingPage() {
       description: "React Framework",
       icon: SiReact,
       color: "purple",
+    },
+    {
+      name: "WebSocket",
+      description: "Real-time communication",
+      icon: SiSocketdotio,
+      color: "blue-light",
     },
     {
       name: "Git",
