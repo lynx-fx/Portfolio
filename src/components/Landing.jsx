@@ -170,27 +170,28 @@ export default function LandingPage() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
+      const triggerPoint = 0.7;
       // Check each section only once
       // Adjusted the multiplier from 0.95 to 1.05 to trigger animations even later
       if (!visibleSections.about && techRef.current) {
         const rect = techRef.current.getBoundingClientRect();
-        if (rect.top < windowHeight * 1.05) {
-          // Trigger when the section is just entering the bottom of the viewport
+        if (rect.top < windowHeight * triggerPoint) {
           setVisibleSections((prev) => ({ ...prev, about: true }));
+          // Trigger when the section is just entering the bottom of the viewport
         }
       }
       if (!visibleSections.work && projectsRef.current) {
         const rect = projectsRef.current.getBoundingClientRect();
-        if (rect.top < windowHeight * 1.05) {
-          // Trigger when the section is just entering the bottom of the viewport
+        if (rect.top < windowHeight * triggerPoint) {
           setVisibleSections((prev) => ({ ...prev, work: true }));
+          // Trigger when the section is just entering the bottom of the viewport
         }
       }
       if (!visibleSections.contact && contactRef.current) {
         const rect = contactRef.current.getBoundingClientRect();
-        if (rect.top < windowHeight * 1.05) {
-          // Trigger when the section is just entering the bottom of the viewport
+        if (rect.top < windowHeight * triggerPoint) {
           setVisibleSections((prev) => ({ ...prev, contact: true }));
+          // Trigger when the section is just entering the bottom of the viewport
         }
       }
     };
@@ -563,36 +564,20 @@ export default function LandingPage() {
             <div className="footer-section">
               <h4 className="footer-section-title">Projects</h4>
               <ul className="footer-links">
-                <li>
-                  <a
-                    href="https://cardkeeper-lynx.netlify.app/"
-                    target="_blank"
-                    className="footer-link"
-                    rel="noreferrer"
-                  >
-                    Cardkeeper
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://timenest-lynx.netlify.app/"
-                    target="_blank"
-                    className="footer-link"
-                    rel="noreferrer"
-                  >
-                    TimeNest
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/lynx-fx/Bash-for-deauth-attack-on-wifi"
-                    target="_blank"
-                    className="footer-link"
-                    rel="noreferrer"
-                  >
-                    Wifi DeAuther
-                  </a>
-                </li>
+                {projects
+                  ? projects.map((project) => (
+                      <li>
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          className="footer-link"
+                          rel="noreferrer"
+                        >
+                          {project.title}
+                        </a>
+                      </li>
+                    ))
+                  : ""}
               </ul>
             </div>
             <div className="footer-section">
