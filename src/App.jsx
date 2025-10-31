@@ -5,7 +5,7 @@ import AIAssistant from './components/Ai'
 export default function App() {
   return (
     <>
-    <AIAssistant/>
+    {/* <AIAssistant/> */}
     <Landing/>
     </>
   )
