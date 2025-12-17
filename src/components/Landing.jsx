@@ -39,10 +39,10 @@ export default function LandingPage() {
   const projects = [
     {
       id: 1,
-      title: "CardKeeper",
-      tags: ["Express", "React", "Node", "MongoDB"],
-      url: "https://cardkeeper-lynx.netlify.app/",
-      src: "/CardKeeper.png",
+      title: "HRMS",
+      tags: ["NextJs", "TailWind", "Express", "MongoDB"],
+      url: "https://hrms.dailyworkreport.com/",
+      src: "/HRMS.png",
     },
     {
       id: 2,
@@ -57,6 +57,13 @@ export default function LandingPage() {
       tags: ["Express", "React", "Node", "MongoDB", "WebSocket"],
       url: "https://livechat-lynx.netlify.app/",
       src: "/LiveChat.png",
+    },
+    {
+      id: 1,
+      title: "CardKeeper",
+      tags: ["Express", "React", "Node", "MongoDB"],
+      url: "https://cardkeeper-lynx.netlify.app/",
+      src: "/CardKeeper.png",
     },
     {
       id: 4,
