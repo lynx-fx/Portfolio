@@ -295,6 +295,17 @@ img {
 .tech-icon-blue {
   background-color: #2563eb;
 }
+.tech-icon-blue-light {
+  background-color: #38bdf8;
+}
+.tech-icon-purple {
+  background-color: #a855f7;
+}
+.tech-icon-indigo {
+  background-color: #6366f1;
+}
+
+
 /* Portfolio Section */
 .portfolio-section {
   margin-top: 4rem;

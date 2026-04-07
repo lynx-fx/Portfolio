@@ -1,9 +1,11 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Cloud } from "lucide-react";
 import {
   SiJavascript,
+  SiTypescript,
   SiReact,
+  SiNextdotjs,
   SiNodedotjs,
   SiExpress,
   SiMongodb,
@@ -14,6 +16,7 @@ import {
   SiLinkedin,
   SiInstagram,
   SiSocketdotio,
+  SiRedis,
 } from "react-icons/si";
 import "../styles/landing.css";
 
@@ -38,18 +41,25 @@ export default function LandingPage() {
 
   const projects = [
     {
-      id: 1,
-      title: "HRMS",
-      tags: ["NextJs", "TailWind", "Express", "MongoDB"],
-      url: "https://hrms.dailyworkreport.com/",
-      src: "/HRMS.png",
-    },
-    {
       id: 2,
       title: "Vanis",
       tags: ["NextJs", "TailWind", "Express", "MongoDB"],
       url: "https://vanis-lynxx.netlify.app/",
       src: "/Vanis.png",
+    },
+    {
+      id: 1,
+      title: "Ecom",
+      tags: ["NextJs", "TailWind", "Express", "MongoDB", "Redis"],
+      url: "https://supplementsandpowders.com/",
+      src: "/Ecom.png",
+    },
+    {
+      id: 4,
+      title: "Wifi DeAuther",
+      tags: ["Shell"],
+      url: "https://github.com/lynx-fx/Bash-for-deauth-attack-on-wifi",
+      src: "/deauther.png",
     },
     {
       id: 3,
@@ -67,13 +77,6 @@ export default function LandingPage() {
     },
     {
       id: 4,
-      title: "Wifi DeAuther",
-      tags: ["Shell"],
-      url: "https://github.com/lynx-fx/Bash-for-deauth-attack-on-wifi",
-      src: "/deauther.png",
-    },
-    {
-      id: 4,
       title: "TimeNest",
       tags: ["Express", "React", "Node", "MongoDB"],
       url: "https://timenest-lynx.netlify.app/",
@@ -83,10 +86,10 @@ export default function LandingPage() {
 
   const technologies = [
     {
-      name: "JavaScript",
+      name: "TypeScript",
       description: "A programming language",
-      icon: SiJavascript,
-      color: "yellow",
+      icon: SiTypescript,
+      color: "blue",
     },
     {
       name: "Express",
@@ -109,8 +112,8 @@ export default function LandingPage() {
     {
       name: "NextJs",
       description: "React Framework",
-      icon: SiReact,
-      color: "purple",
+      icon: SiNextdotjs,
+      color: "gray",
     },
     {
       name: "WebSocket",
@@ -141,6 +144,18 @@ export default function LandingPage() {
       description: "SQL database",
       icon: SiMysql,
       color: "blue",
+    },
+    {
+      name: "Redis",
+      description: "In memory datastructure",
+      icon: SiRedis,
+      color: "blue",
+    },
+    {
+      name: "Cloud Deployment",
+      description: "VPS, Netlify, Vercel",
+      icon: Cloud,
+      color: "blue-light",
     },
   ];
 
