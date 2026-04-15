@@ -43,6 +43,7 @@ export default function LandingPage() {
     {
       id: 2,
       title: "Vanis",
+      description: "A modern, responsive full-stack platform built with Next.js and Tailwind.",
       tags: ["NextJs", "TailWind", "Express", "MongoDB"],
       url: "https://vanis-lynxx.netlify.app/",
       src: "/Vanis.png",
@@ -50,6 +51,7 @@ export default function LandingPage() {
     {
       id: 1,
       title: "Ecom",
+      description: "A comprehensive e-commerce application featuring product browsing and cart functionality.",
       tags: ["NextJs", "TailWind", "Express", "MongoDB", "Redis"],
       url: "https://supplementsandpowders.com/",
       src: "/Ecom.png",
@@ -57,6 +59,7 @@ export default function LandingPage() {
     {
       id: 4,
       title: "Wifi DeAuther",
+      description: "A shell script for conducting WiFi deauthentication attacks for security testing.",
       tags: ["Shell"],
       url: "https://github.com/lynx-fx/Bash-for-deauth-attack-on-wifi",
       src: "/deauther.png",
@@ -64,6 +67,7 @@ export default function LandingPage() {
     {
       id: 3,
       title: "LiveChat",
+      description: "A real-time live chat application using WebSocket, React, and MongoDB.",
       tags: ["Express", "React", "Node", "MongoDB", "WebSocket"],
       url: "https://livechat-lynx.netlify.app/",
       src: "/LiveChat.png",
@@ -71,6 +75,7 @@ export default function LandingPage() {
     {
       id: 1,
       title: "CardKeeper",
+      description: "A web application for managing and securely storing card information.",
       tags: ["Express", "React", "Node", "MongoDB"],
       url: "https://cardkeeper-lynx.netlify.app/",
       src: "/CardKeeper.png",
@@ -78,6 +83,7 @@ export default function LandingPage() {
     {
       id: 4,
       title: "TimeNest",
+      description: "A productivity tool for time management and organizing daily tasks.",
       tags: ["Express", "React", "Node", "MongoDB"],
       url: "https://timenest-lynx.netlify.app/",
       src: "/TimeNest.png",
@@ -490,6 +496,7 @@ export default function LandingPage() {
                       />
                     </div>
                     <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
                     <div className="project-tags">
                       {project.tags.map((tag, tagIndex) => (
                         <span key={tagIndex} className="project-tag">
