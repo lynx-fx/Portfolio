@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight, Cloud } from "lucide-react";
 import {
   SiJavascript,
@@ -17,8 +18,51 @@ import {
   SiInstagram,
   SiSocketdotio,
   SiRedis,
+  SiNestjs,
+  SiAmazonwebservices,
+  SiNginx,
+  SiSwagger,
+  SiDocker
 } from "react-icons/si";
+import {GitHubCalendar} from "react-github-calendar";
 import "../styles/landing.css";
+
+const TiltCard = ({ children, className, style }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-100, 100], [15, -15]);
+  const rotateY = useTransform(x, [-100, 100], [-15, 15]);
+
+  function handleMouse(event) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    x.set(event.clientX - centerX);
+    y.set(event.clientY - centerY);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
+  return (
+    <motion.div
+      style={{
+        perspective: 1000,
+        rotateX,
+        rotateY,
+        ...style,
+      }}
+      onMouseMove={handleMouse}
+      onMouseLeave={handleMouseLeave}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 export default function LandingPage() {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -28,6 +72,7 @@ export default function LandingPage() {
   const [visibleSections, setVisibleSections] = useState({
     about: false,
     work: false,
+    github: false,
     contact: false,
   });
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -36,13 +81,14 @@ export default function LandingPage() {
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const techRef = useRef(null);
   const projectsRef = useRef(null);
+  const githubRef = useRef(null);
   const contactRef = useRef(null);
   const carouselRef = useRef(null);
 
   const projects = [
     {
       id: 1,
-      title: "Voyage  ",
+      title: "Voyage",
       description: "A comprehensive travel guidance site with AI integration",
       tags: ["NextJs", "TailWind", "Express", "MongoDB", "WebSocket"],
       url: "https://voyage.gharti-sudarshan.com.np/",
@@ -114,9 +160,21 @@ export default function LandingPage() {
       color: "blue",
     },
     {
+      name: "NestJs",
+      description: "TS Backend Framework",
+      icon: SiNestjs,
+      color: "red",
+    },
+    {
       name: "Express",
       description: "JS Backend Framework",
       icon: SiExpress,
+      color: "gray",
+    },
+    {
+      name: "NextJs",
+      description: "React Framework",
+      icon: SiNextdotjs,
       color: "gray",
     },
     {
@@ -132,12 +190,6 @@ export default function LandingPage() {
       color: "cyan-light",
     },
     {
-      name: "NextJs",
-      description: "React Framework",
-      icon: SiNextdotjs,
-      color: "gray",
-    },
-    {
       name: "WebSocket",
       description: "Real-time communication",
       icon: SiSocketdotio,
@@ -151,7 +203,7 @@ export default function LandingPage() {
     },
     {
       name: "Node.JS",
-      description: "Runtime Environment",
+      description: "Runtime environment",
       icon: SiNodedotjs,
       color: "green",
     },
@@ -168,6 +220,12 @@ export default function LandingPage() {
       color: "blue",
     },
     {
+      name: "Postgres",
+      description: "SQL database",
+      icon: SiRedis,
+      color: "blue",
+    },
+    {
       name: "Redis",
       description: "In memory datastructure",
       icon: SiRedis,
@@ -178,6 +236,30 @@ export default function LandingPage() {
       description: "VPS, Netlify, Vercel",
       icon: Cloud,
       color: "blue-light",
+    },
+    {
+      name: "AWS",
+      description: "EC2, RDS, S3, IAM, Route 53",
+      icon: SiAmazonwebservices,
+      color: "orange",
+    },
+    {
+      name: "Nginx",
+      description: "Web server",
+      icon: SiNginx,
+      color: "green",
+    },
+    {
+      name: "Swagger",
+      description: "RESTful API documentation",
+      icon: SiSwagger,
+      color: "green-light",
+    },
+    {
+      name: "Docker",
+      description: "Containerization",
+      icon: SiDocker,
+      color: "blue",
     },
   ];
 
@@ -229,6 +311,12 @@ export default function LandingPage() {
         if (rect.top < windowHeight * triggerPoint) {
           setVisibleSections((prev) => ({ ...prev, work: true }));
           // Trigger when the section is just entering the bottom of the viewport
+        }
+      }
+      if (!visibleSections.github && githubRef.current) {
+        const rect = githubRef.current.getBoundingClientRect();
+        if (rect.top < windowHeight * triggerPoint) {
+          setVisibleSections((prev) => ({ ...prev, github: true }));
         }
       }
       if (!visibleSections.contact && contactRef.current) {
@@ -356,6 +444,9 @@ export default function LandingPage() {
             </a>
             <a href="#work" className="nav-link">
               Work
+            </a>
+            <a href="#github" className="nav-link">
+              GitHub
             </a>
             <a href="#about" className="nav-link">
               About
@@ -551,6 +642,47 @@ export default function LandingPage() {
             <div className="drag-instruction">
               <span>← Drag or click dots to navigate →</span>
             </div>
+          </div>
+          {/* GitHub Stats Section */}
+          <div
+            ref={githubRef}
+            className={`github-section ${
+              visibleSections.github ? "visible" : ""
+            }`}
+            id="github"
+          >
+            <h2
+              className={`section-title ${
+                visibleSections.github ? "visible" : ""
+              }`}
+            >
+              GitHub Activity
+            </h2>
+            <p
+              className={`section-description ${
+                visibleSections.github ? "visible" : ""
+              }`}
+              style={{ animationDelay: "0.4s" }}
+            >
+              Tracking my code journey, contributions, and project statistics in
+              real-time.
+            </p>
+
+            <TiltCard
+              className="github-calendar-container"
+              style={{ animationDelay: "1s" }}
+            >
+              <GitHubCalendar
+                username="lynx-fx"
+                fontSize={12}
+                blockSize={12}
+                blockMargin={4}
+                colorScheme="dark"
+                theme={{
+                  dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+                }}
+              />
+            </TiltCard>
           </div>
         </div>
       </div>

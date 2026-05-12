@@ -102,6 +102,7 @@ img {
 .section-description,
 .tech-card,
 .portfolio-section,
+.github-section,
 .progress-indicator,
 .contact-content {
   opacity: 0;
@@ -117,6 +118,7 @@ img {
 .section-description.visible,
 .tech-card.visible,
 .portfolio-section.visible,
+.github-section.visible,
 .progress-indicator.visible,
 .contact-content.visible {
   opacity: 1;
@@ -303,6 +305,9 @@ img {
 }
 .tech-icon-indigo {
   background-color: #6366f1;
+}
+.tech-icon-red {
+  background-color: #e0234e;
 }
 
 
@@ -505,6 +510,90 @@ img {
   background-color: #6b7280;
   transform: scale(1.05);
 }
+/* GitHub Section */
+.github-section {
+  margin-top: 8rem;
+}
+.github-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.github-stat-card {
+  background-color: rgba(31, 41, 55, 0.5);
+  border: 1px solid #4b5563;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+}
+.github-stat-card:hover {
+  background-color: rgba(31, 41, 55, 0.7);
+  transform: scale(1.02);
+  box-shadow: 0 15px 30px rgba(59, 130, 246, 0.1);
+}
+.github-stats-img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.github-calendar-container {
+  background-color: rgba(31, 41, 55, 0.5);
+  border: 1px solid #4b5563;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  transition: all 0.5s ease;
+}
+.github-calendar-container:hover {
+  background-color: rgba(31, 41, 55, 0.7);
+  box-shadow: 0 15px 30px rgba(59, 130, 246, 0.1);
+}
+/* Scrollbar for calendar on mobile */
+.github-calendar-container::-webkit-scrollbar {
+  display: block;
+  height: 4px;
+}
+.github-calendar-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.github-calendar-container::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 10px;
+}
+/* 3D Contribution Section */
+.github-3d-container {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+}
+.github-3d-card {
+  background-color: rgba(31, 41, 55, 0.5);
+  border: 1px solid #4b5563;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+.github-3d-card:hover {
+  background-color: rgba(31, 41, 55, 0.7);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+}
+.github-3d-img {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
 /* Contact Section */
 .contact-section {
   margin-top: 8rem;
@@ -699,6 +788,9 @@ img {
   }
   .footer-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .github-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (min-width: 1024px) {
