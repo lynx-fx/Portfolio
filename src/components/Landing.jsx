@@ -445,9 +445,6 @@ export default function LandingPage() {
             <a href="#work" className="nav-link">
               Work
             </a>
-            <a href="#github" className="nav-link">
-              GitHub
-            </a>
             <a href="#about" className="nav-link">
               About
             </a>
