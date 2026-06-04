@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight, Cloud } from "lucide-react";
 import {
   SiJavascript,
@@ -22,47 +21,11 @@ import {
   SiAmazonwebservices,
   SiNginx,
   SiSwagger,
-  SiDocker
+  SiDocker,
+  SiJest
 } from "react-icons/si";
-import {GitHubCalendar} from "react-github-calendar";
+import { GitHubCalendar } from "react-github-calendar";
 import "../styles/landing.css";
-
-const TiltCard = ({ children, className, style }) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const rotateX = useTransform(y, [-100, 100], [15, -15]);
-  const rotateY = useTransform(x, [-100, 100], [-15, 15]);
-
-  function handleMouse(event) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    x.set(event.clientX - centerX);
-    y.set(event.clientY - centerY);
-  }
-
-  function handleMouseLeave() {
-    x.set(0);
-    y.set(0);
-  }
-
-  return (
-    <motion.div
-      style={{
-        perspective: 1000,
-        rotateX,
-        rotateY,
-        ...style,
-      }}
-      onMouseMove={handleMouse}
-      onMouseLeave={handleMouseLeave}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-};
 
 export default function LandingPage() {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -96,6 +59,22 @@ export default function LandingPage() {
     },
     {
       id: 2,
+      title: "CardKeeper",
+      description: "A web application for managing and securely storing card information.",
+      tags: ["NestJs", "React", "Node", "Postgres", "Redis"],
+      url: "https://cardkeeper.gharti-sudarshan.com.np",
+      src: "/CardKeeper.png",
+    },
+    {
+      id: 3,
+      title: "Serviq",
+      description: "A inventory management system for mechanical businesses.",
+      tags: ["NextJs", ".NET", "Postgres"],
+      url: "https://serviq.gharti-sudarshan.com.np/",
+      src: "/Serviq.png",
+    },
+    {
+      id: 4,
       title: "Eventra",
       description: "A ticket selling platform based on Nepal",
       tags: ["NextJs", "TailWind", "Express", "MongoDB"],
@@ -103,7 +82,7 @@ export default function LandingPage() {
       src: "/Eventra.png",
     },
     {
-      id: 3,
+      id: 5,
       title: "Vanis",
       description: "A modern web app for easy file sharing",
       tags: ["NextJs", "TailWind", "Express", "MongoDB"],
@@ -111,45 +90,21 @@ export default function LandingPage() {
       src: "/Vanis.png",
     },
     {
-      id: 4,
-      title: "Ecom",
+      id: 6,
+      title: "Supplements & Powders",
       description: "A comprehensive e-commerce application tailored for affilated marketing.",
       tags: ["NextJs", "TailWind", "Express", "MongoDB", "Redis"],
       url: "https://supplementsandpowders.com/",
       src: "/Ecom.png",
     },
     {
-      id: 5,
+      id: 7,
       title: "Wifi DeAuther",
       description: "A shell script for conducting WiFi deauthentication attacks for security testing.",
       tags: ["Shell"],
       url: "https://github.com/lynx-fx/Bash-for-deauth-attack-on-wifi",
       src: "/deauther.png",
     },
-    // {
-    //   id: 6,
-    //   title: "LiveChat",
-    //   description: "A real-time live chat application using WebSocket, React, and MongoDB.",
-    //   tags: ["Express", "React", "Node", "MongoDB", "WebSocket"],
-    //   url: "https://livechat-lynx.netlify.app/",
-    //   src: "/LiveChat.png",
-    // },
-    // {
-    //   id: 7,
-    //   title: "CardKeeper",
-    //   description: "A web application for managing and securely storing card information.",
-    //   tags: ["Express", "React", "Node", "MongoDB"],
-    //   url: "https://cardkeeper-lynx.netlify.app/",
-    //   src: "/CardKeeper.png",
-    // },
-    // {
-    //   id: 8,
-    //   title: "TimeNest",
-    //   description: "A productivity tool for time management and organizing daily tasks.",
-    //   tags: ["Express", "React", "Node", "MongoDB"],
-    //   url: "https://timenest-lynx.netlify.app/",
-    //   src: "/TimeNest.png",
-    // },
   ];
 
   const technologies = [
@@ -231,15 +186,15 @@ export default function LandingPage() {
       icon: SiRedis,
       color: "blue",
     },
-    {
-      name: "Cloud Deployment",
-      description: "VPS, Netlify, Vercel",
-      icon: Cloud,
-      color: "blue-light",
-    },
+    // {
+    //   name: "Cloud Deployment",
+    //   description: "VPS, Netlify, Vercel",
+    //   icon: Cloud,
+    //   color: "blue-light",
+    // },
     {
       name: "AWS",
-      description: "EC2, RDS, S3, IAM, Route 53",
+      description: "EC2, S3",
       icon: SiAmazonwebservices,
       color: "orange",
     },
@@ -260,6 +215,12 @@ export default function LandingPage() {
       description: "Containerization",
       icon: SiDocker,
       color: "blue",
+    },
+    {
+      name: "Jest",
+      description: "JavaScript Testing Framework",
+      icon: SiJest,
+      color: "red",
     },
   ];
 
@@ -500,16 +461,14 @@ export default function LandingPage() {
         {/* Technologies Section */}
         <div ref={techRef} className="technologies-section" id="about">
           <h2
-            className={`section-title ${
-              visibleSections.about ? "visible" : ""
-            }`}
+            className={`section-title ${visibleSections.about ? "visible" : ""
+              }`}
           >
             Current technologies
           </h2>
           <p
-            className={`section-description ${
-              visibleSections.about ? "visible" : ""
-            }`}
+            className={`section-description ${visibleSections.about ? "visible" : ""
+              }`}
             style={{ animationDelay: "0.4s" }}
           >
             I leverage modern technologies to create innovative and efficient
@@ -521,9 +480,8 @@ export default function LandingPage() {
               return (
                 <div
                   key={index}
-                  className={`tech-card tech-card-${tech.color} ${
-                    visibleSections.about ? "visible" : ""
-                  }`}
+                  className={`tech-card tech-card-${tech.color} ${visibleSections.about ? "visible" : ""
+                    }`}
                   style={{ animationDelay: `${0.6 + index * 0.15}s` }}
                 >
                   <div className="tech-card-content">
@@ -542,16 +500,14 @@ export default function LandingPage() {
           {/* Portfolio Section */}
           <div
             ref={projectsRef}
-            className={`portfolio-section ${
-              visibleSections.work ? "visible" : ""
-            }`}
+            className={`portfolio-section ${visibleSections.work ? "visible" : ""
+              }`}
             id="work"
           >
             <div className="portfolio-header">
               <h2
-                className={`section-title ${
-                  visibleSections.about ? "visible" : ""
-                }`}
+                className={`section-title ${visibleSections.about ? "visible" : ""
+                  }`}
               >
                 My Projects
               </h2>
@@ -587,9 +543,8 @@ export default function LandingPage() {
                 {visibleProjects.map((project, index) => (
                   <div
                     key={`${project.id}-${currentProjectIndex}-${index}`}
-                    className={`project-card ${
-                      isTransitioning ? "project-transitioning" : ""
-                    }`}
+                    className={`project-card ${isTransitioning ? "project-transitioning" : ""
+                      }`}
                     style={{ animationDelay: `${index * 0.2}s` }}
                   >
                     <div className="project-mockup">
@@ -626,9 +581,8 @@ export default function LandingPage() {
               {projects.map((_, index) => (
                 <button
                   key={index}
-                  className={`pagination-dot ${
-                    index === currentProjectIndex ? "active" : ""
-                  }`}
+                  className={`pagination-dot ${index === currentProjectIndex ? "active" : ""
+                    }`}
                   onClick={() => goToProject(index)}
                   disabled={isTransitioning}
                   aria-label={`Go to project ${index + 1}`}
@@ -643,29 +597,26 @@ export default function LandingPage() {
           {/* GitHub Stats Section */}
           <div
             ref={githubRef}
-            className={`github-section ${
-              visibleSections.github ? "visible" : ""
-            }`}
+            className={`github-section ${visibleSections.github ? "visible" : ""
+              }`}
             id="github"
           >
             <h2
-              className={`section-title ${
-                visibleSections.github ? "visible" : ""
-              }`}
+              className={`section-title ${visibleSections.github ? "visible" : ""
+                }`}
             >
               GitHub Activity
             </h2>
             <p
-              className={`section-description ${
-                visibleSections.github ? "visible" : ""
-              }`}
+              className={`section-description ${visibleSections.github ? "visible" : ""
+                }`}
               style={{ animationDelay: "0.4s" }}
             >
               Tracking my code journey, contributions, and project statistics in
               real-time.
             </p>
 
-            <TiltCard
+            <div
               className="github-calendar-container"
               style={{ animationDelay: "1s" }}
             >
@@ -679,16 +630,15 @@ export default function LandingPage() {
                   dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
                 }}
               />
-            </TiltCard>
+            </div>
           </div>
         </div>
       </div>
       {/* Contact Section */}
       <div ref={contactRef} className="contact-section">
         <div
-          className={`contact-content ${
-            visibleSections.contact ? "visible" : ""
-          }`}
+          className={`contact-content ${visibleSections.contact ? "visible" : ""
+            }`}
           style={{ animationDelay: "0.4s" }}
         >
           <h2 className="contact-title">
@@ -740,17 +690,17 @@ export default function LandingPage() {
               <ul className="footer-links">
                 {projects
                   ? projects.map((project) => (
-                      <li>
-                        <a
-                          href={project.url}
-                          target="_blank"
-                          className="footer-link"
-                          rel="noreferrer"
-                        >
-                          {project.title}
-                        </a>
-                      </li>
-                    ))
+                    <li>
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        className="footer-link"
+                        rel="noreferrer"
+                      >
+                        {project.title}
+                      </a>
+                    </li>
+                  ))
                   : ""}
               </ul>
             </div>
