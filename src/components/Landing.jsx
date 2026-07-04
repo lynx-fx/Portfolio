@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight, Cloud } from "lucide-react";
+import { ChevronLeft, ChevronRight, Cloud, FileText, Briefcase, Handshake } from "lucide-react";
 import {
   SiJavascript,
   SiTypescript,
@@ -443,8 +443,8 @@ export default function LandingPage() {
         >
           <a href="#work">
             <button className="btn btn-outline btn-with-icon">
+              <Briefcase className="btn-icon-left" />
               <span>See My Work</span>
-              <ArrowRight className="btn-icon-right" />
             </button>
           </a>
           <a
@@ -455,6 +455,23 @@ export default function LandingPage() {
             <button className="btn btn-outline btn-with-icon">
               <SiGithub className="btn-icon-left" />
               <span>GitHub</span>
+            </button>
+          </a>
+          <a href="https://www.upwork.com/freelancers/~017780a7917428d03f?mp_source=share"
+          target="_blank">
+            <button className="btn btn-outline btn-with-icon">
+              <Handshake className="btn-icon-left" />
+              <span>Hire Me</span>
+            </button>
+          </a>
+          <a
+            href="/Sudarshan-Gharti.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="btn btn-outline btn-with-icon">
+              <FileText className="btn-icon-left" />
+              <span>Resume</span>
             </button>
           </a>
         </div>
@@ -645,7 +662,7 @@ export default function LandingPage() {
             Like what you see? Reach out{" "}
             <span className="contact-accent">via email</span> to collaborate!
           </h2>
-          <a href="mailto:anupbhujel07@gmail.com">
+          <a href="mailto:info@gharti-sudarshan.com.np">
             <button className="btn btn-outline contact-btn">
               <span>Mail Now</span>
             </button>
