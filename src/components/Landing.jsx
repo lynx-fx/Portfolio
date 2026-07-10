@@ -194,7 +194,7 @@ export default function LandingPage() {
     // },
     {
       name: "AWS",
-      description: "EC2, S3",
+      description: "EC2, S3, RDS",
       icon: SiAmazonwebservices,
       color: "orange",
     },
