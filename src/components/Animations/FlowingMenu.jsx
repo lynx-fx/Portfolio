@@ -228,8 +228,23 @@ function MenuItem({
         onMouseLeave={handleMouseLeave}
         style={{ color: textColor }}
       >
+        {/* Mobile-Only Project Image */}
+        {image && (
+          <div className="flowing-menu-mobile-img-wrapper">
+            <img
+              src={image}
+              alt={text}
+              className="flowing-menu-mobile-img"
+              loading="lazy"
+            />
+          </div>
+        )}
+
         <div className="flowing-menu-item-info">
-          <span className="flowing-menu-title-text">{text}</span>
+          <div className="flowing-menu-title-row">
+            <span className="flowing-menu-title-text">{text}</span>
+            <span className="flowing-menu-mobile-link-icon" aria-hidden="true">↗</span>
+          </div>
           {description && (
             <span className="flowing-menu-desc-text">{description}</span>
           )}

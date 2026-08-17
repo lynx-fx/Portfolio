@@ -7,17 +7,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Mighty Wings';
-  src: url('/fonts/MightyWings.woff2') format('woff2'),
-    url('/fonts/MightyWings.woff') format('woff'),
-    url('/fonts/MightyWings.ttf') format('truetype'),
-    url('/fonts/mighty-wings.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* Reset and base styles */
 * {
   margin: 0;
