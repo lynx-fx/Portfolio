@@ -29,6 +29,8 @@ import "../styles/landing.css";
 import GradualBlur from "./Animations/GradualBlur";
 import StaggeredMenu from "./Animations/StagedMenu";
 import FlowingMenu from "./Animations/FlowingMenu";
+import DarkVeil from "./Animations/DarkVile";
+import FluidGlass from "./Animations/FluidGlass";
 
 export default function LandingPage() {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -403,22 +405,24 @@ export default function LandingPage() {
   ];
 
   const socialLinks = [
-    { label: "LinkedIn", link: "https://www.linkedin.com/in/anup-bhujel-2b1381303/" },
+    { label: "LinkedIn", link: "https://www.linkedin.com/in/sudarshan-gharti-2b1381303" },
     { label: "GitHub", link: "https://github.com/lynx-fx" },
-    { label: "Instagram", link: "https://www.instagram.com/" }
+    { label: "Instagram", link: "https://www.instagram.com/anup.archive/" }
   ];
 
   const flowingMenuItems = projects.map((p) => ({
     text: p.title,
     link: p.url,
-    image: p.src
+    image: p.src,
+    description: p.description,
+    tags: p.tags
   }));
 
   return (
     <div className="portfolio-container">
-      {/* System Wide Fixed Edge Blurs */}
-      <GradualBlur target="page" position="top" preset="page-header" strength={3.5} height="7rem" zIndex={40} />
-      <GradualBlur target="page" position="bottom" preset="page-footer" strength={3.5} height="7rem" zIndex={40} />
+
+      {/* System Wide Fixed Edge Blur */}
+      <GradualBlur target="page" position="bottom" preset="page-footer" zIndex={40} />
 
       {/* Staggered Navigation Overlay */}
       <StaggeredMenu
@@ -430,68 +434,91 @@ export default function LandingPage() {
         colors={["#1f2937", "#111827"]}
       />
       {/* Hero Section */}
-      <div className="hero-section">
+      <div className="hero-section relative overflow-hidden">
         <div
-          className={`hero-location ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "0.4s" }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            width: '100%',
+            height: '480px',
+            maxHeight: '65vh',
+            zIndex: 0,
+            pointerEvents: 'none',
+            opacity: 0.6,
+            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)'
+          }}
         >
-          Based in Nepal
+          <DarkVeil speed={0.4} hueShift={20} warpAmount={0.2} noiseIntensity={0.02} />
         </div>
-        <h1
-          className={`hero-title ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "0.6s" }}
-        >
-          Bridging <span className="hero-accent">Visual Elegance</span> with{" "}
-          <span className="hero-accent">Code Logic,</span> seamlessly.
-        </h1>
-        <p
-          className={`hero-subtitle ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "0.8s" }}
-        >
-          Hi, I'm Sudarshan, I create intuitive and highly functional web
-          applications.
-        </p>
-        <div
-          className={`hero-buttons ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "1.0s" }}
-        >
-          <a href="#work">
-            <button className="btn btn-outline btn-with-icon">
-              <Briefcase className="btn-icon-left" />
-              <span>See My Work</span>
-            </button>
-          </a>
-          <a
-            href="https://github.com/lynx-fx"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="hero-content-wrapper" style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div
+            className={`hero-location ${isLoaded ? "visible" : ""}`}
+            style={{ animationDelay: "0.4s" }}
           >
-            <button className="btn btn-outline btn-with-icon">
-              <SiGithub className="btn-icon-left" />
-              <span>GitHub</span>
-            </button>
-          </a>
-          <a href="https://www.upwork.com/freelancers/~017780a7917428d03f?mp_source=share"
-          target="_blank">
-            <button className="btn btn-outline btn-with-icon">
-              <Handshake className="btn-icon-left" />
-              <span>Hire Me</span>
-            </button>
-          </a>
-          <a
-            href="/Sudarshan-Gharti.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            Based in Nepal
+          </div>
+          <h1
+            className={`hero-title ${isLoaded ? "visible" : ""}`}
+            style={{ animationDelay: "0.6s" }}
           >
-            <button className="btn btn-outline btn-with-icon">
-              <FileText className="btn-icon-left" />
-              <span>Resume</span>
-            </button>
-          </a>
+            <span className="hero-title-line">
+              Bridging <span className="hero-accent">Visual Elegance</span> with
+            </span>
+            <span className="hero-title-line">
+              <span className="hero-accent">Code Logic,</span> seamlessly.
+            </span>
+          </h1>
+          <p
+            className={`hero-subtitle ${isLoaded ? "visible" : ""}`}
+            style={{ animationDelay: "0.8s" }}
+          >
+            Hi, I'm Sudarshan, I create intuitive and highly functional web
+            applications.
+          </p>
+          <div
+            className={`hero-buttons ${isLoaded ? "visible" : ""}`}
+            style={{ animationDelay: "1.0s" }}
+          >
+            <a href="#work">
+              <button className="btn btn-outline btn-with-icon">
+                <Briefcase className="btn-icon-left" />
+                <span>See My Work</span>
+              </button>
+            </a>
+            <a
+              href="https://github.com/lynx-fx"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="btn btn-outline btn-with-icon">
+                <SiGithub className="btn-icon-left" />
+                <span>GitHub</span>
+              </button>
+            </a>
+            <a href="https://www.upwork.com/freelancers/~017780a7917428d03f?mp_source=share"
+              target="_blank">
+              <button className="btn btn-outline btn-with-icon">
+                <Handshake className="btn-icon-left" />
+                <span>Hire Me</span>
+              </button>
+            </a>
+            <a
+              href="/Sudarshan-Gharti.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="btn btn-outline btn-with-icon">
+                <FileText className="btn-icon-left" />
+                <span>Resume</span>
+              </button>
+            </a>
+          </div>
         </div>
         {/* Technologies Section */}
         <div ref={techRef} className="technologies-section relative" id="about">
-          <GradualBlur position="top" height="4rem" strength={1.5} opacity={0.6} curve="bezier" />
           <h2
             className={`section-title ${visibleSections.about ? "visible" : ""
               }`}
@@ -561,7 +588,6 @@ export default function LandingPage() {
               }`}
             id="github"
           >
-            <GradualBlur position="top" height="4rem" strength={1.5} opacity={0.6} curve="bezier" />
             <h2
               className={`section-title ${visibleSections.github ? "visible" : ""
                 }`}
@@ -597,7 +623,6 @@ export default function LandingPage() {
       </div>
       {/* Contact Section */}
       <div ref={contactRef} className="contact-section relative">
-        <GradualBlur position="top" height="5rem" strength={2} opacity={0.7} curve="bezier" />
         <div
           className={`contact-content ${visibleSections.contact ? "visible" : ""
             }`}
@@ -616,7 +641,6 @@ export default function LandingPage() {
       </div>
       {/* Footer */}
       <footer className="footer relative" id="footer">
-        <GradualBlur position="top" height="4rem" strength={1.5} opacity={0.6} curve="bezier" />
         <div className="footer-content">
           <div className="footer-grid">
             <div className="footer-brand">
@@ -672,7 +696,7 @@ export default function LandingPage() {
               <ul className="footer-links">
                 <li>
                   <a
-                    href="https://www.linkedin.com/in/anup-bhujel-2b1381303/"
+                    href="https://www.linkedin.com/in/sudarshan-gharti-2b1381303"
                     target="_blank"
                     className="footer-link footer-link-with-icon"
                     rel="noreferrer"
@@ -694,7 +718,7 @@ export default function LandingPage() {
                 </li>
                 <li>
                   <a
-                    href="https://www.instagram.com/"
+                    href="https://www.instagram.com/anup.archive/"
                     target="_blank"
                     className="footer-link footer-link-with-icon"
                     rel="noreferrer"

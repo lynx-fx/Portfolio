@@ -19,19 +19,19 @@ const DEFAULT_CONFIG = {
 };
 
 const PRESETS = {
-  top: { position: 'top', height: '6rem' },
-  bottom: { position: 'bottom', height: '6rem' },
-  left: { position: 'left', height: '6rem' },
-  right: { position: 'right', height: '6rem' },
-  subtle: { height: '4rem', strength: 1, opacity: 0.8, divCount: 3 },
-  intense: { height: '10rem', strength: 4, divCount: 8, exponential: true },
-  smooth: { height: '8rem', curve: 'bezier', divCount: 10 },
-  sharp: { height: '5rem', curve: 'linear', divCount: 4 },
-  header: { position: 'top', height: '8rem', curve: 'ease-out' },
-  footer: { position: 'bottom', height: '8rem', curve: 'ease-out' },
-  sidebar: { position: 'left', height: '6rem', strength: 2.5 },
-  'page-header': { position: 'top', height: '10rem', target: 'page', strength: 3 },
-  'page-footer': { position: 'bottom', height: '10rem', target: 'page', strength: 3 }
+  top: { position: 'top', height: '5rem', strength: 0.8, curve: 'bezier', divCount: 8 },
+  bottom: { position: 'bottom', height: '5rem', strength: 0.8, curve: 'bezier', divCount: 8 },
+  left: { position: 'left', height: '5rem', strength: 0.8, curve: 'bezier', divCount: 8 },
+  right: { position: 'right', height: '5rem', strength: 0.8, curve: 'bezier', divCount: 8 },
+  subtle: { height: '3.5rem', strength: 0.6, opacity: 0.5, divCount: 8, curve: 'bezier' },
+  intense: { height: '8rem', strength: 2, divCount: 8, exponential: true },
+  smooth: { height: '5rem', curve: 'bezier', divCount: 10, strength: 0.8 },
+  sharp: { height: '4rem', curve: 'linear', divCount: 4 },
+  header: { position: 'top', height: '5rem', curve: 'ease-out', strength: 0.8 },
+  footer: { position: 'bottom', height: '5rem', curve: 'ease-out', strength: 0.8 },
+  sidebar: { position: 'left', height: '5rem', strength: 1 },
+  'page-header': { position: 'top', height: '5rem', target: 'page', strength: 0.8, curve: 'bezier', divCount: 8 },
+  'page-footer': { position: 'bottom', height: '4.5rem', target: 'page', strength: 0.8, curve: 'bezier', divCount: 8, opacity: 0.6 }
 };
 
 const CURVE_FUNCTIONS = {
@@ -172,7 +172,7 @@ const GradualBlur = props => {
       pointerEvents: config.hoverIntensity ? 'auto' : 'none',
       opacity: isVisible ? 1 : 0,
       transition: config.animated ? `opacity ${config.duration} ${config.easing}` : undefined,
-      zIndex: config.zIndex,
+      zIndex: isPageTarget ? config.zIndex + 100 : config.zIndex,
       ...config.style
     };
 

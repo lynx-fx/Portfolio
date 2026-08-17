@@ -11,20 +11,21 @@ function FlowingMenu({
   marqueeTextColor = '#000000',
   borderColor = 'rgba(75, 85, 99, 0.4)'
 }) {
-  const [activeImage, setActiveImage] = useState(null);
-  const [lastImage, setLastImage] = useState(null);
+  const [activeItem, setActiveItem] = useState(null);
+  const [lastItem, setLastItem] = useState(null);
   const previewRef = useRef(null);
 
   const handleGlobalMouseMove = (e) => {
     if (!previewRef.current) return;
-    const cardWidth = 320;
-    const cardHeight = 240;
+    const cardWidth = 340;
+    const cardHeight = 280;
 
-    let targetX = e.clientX + 20;
+    let targetX = e.clientX - cardWidth / 2;
     let targetY = e.clientY - cardHeight / 2;
 
+    if (targetX < 20) targetX = 20;
     if (targetX + cardWidth > window.innerWidth - 20) {
-      targetX = e.clientX - cardWidth - 20;
+      targetX = window.innerWidth - cardWidth - 20;
     }
     if (targetY < 20) targetY = 20;
     if (targetY + cardHeight > window.innerHeight - 20) {
@@ -34,20 +35,22 @@ function FlowingMenu({
     gsap.to(previewRef.current, {
       x: targetX,
       y: targetY,
-      duration: 0.25,
-      ease: 'power2.out',
+      duration: 0.1,
+      ease: 'power3.out',
       overwrite: 'auto'
     });
   };
 
-  const handleItemHover = (image) => {
-    setActiveImage(image);
-    if (image) setLastImage(image);
+  const handleItemHover = (item) => {
+    setActiveItem(item);
+    if (item) setLastItem(item);
   };
 
   const handleItemLeave = () => {
-    setActiveImage(null);
+    setActiveItem(null);
   };
+
+  const currentDisplayItem = activeItem || lastItem;
 
   return (
     <div className="flowing-menu-container" style={{ backgroundColor: bgColor, borderColor }}>
@@ -62,21 +65,40 @@ function FlowingMenu({
             marqueeTextColor={marqueeTextColor}
             borderColor={borderColor}
             isFirst={idx === 0}
-            onHover={() => handleItemHover(item.image)}
+            onHover={() => handleItemHover(item)}
             onLeave={handleItemLeave}
           />
         ))}
       </nav>
 
-      {/* Floating Cursor Preview Image */}
+      {/* Floating Cursor Preview Image & Project Details */}
       <div className="flowing-menu-hover-preview" ref={previewRef}>
-        <div className={`flowing-menu-preview-card ${activeImage ? 'active' : ''}`}>
-          {(activeImage || lastImage) && (
-            <img
-              src={activeImage || lastImage}
-              alt="Project Preview"
-              className="flowing-menu-hover-preview-img"
-            />
+        <div className={`flowing-menu-preview-card ${activeItem ? 'active' : ''}`}>
+          {currentDisplayItem && (
+            <>
+              <div className="flowing-menu-preview-img-wrapper">
+                <img
+                  src={currentDisplayItem.image}
+                  alt={currentDisplayItem.text}
+                  className="flowing-menu-hover-preview-img"
+                />
+              </div>
+              <div className="flowing-menu-preview-content">
+                <h4 className="flowing-menu-preview-title">{currentDisplayItem.text}</h4>
+                {currentDisplayItem.description && (
+                  <p className="flowing-menu-preview-desc">{currentDisplayItem.description}</p>
+                )}
+                {currentDisplayItem.tags && currentDisplayItem.tags.length > 0 && (
+                  <div className="flowing-menu-preview-tags">
+                    {currentDisplayItem.tags.map((tag, i) => (
+                      <span key={i} className="flowing-menu-preview-tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </div>
       </div>
@@ -84,7 +106,21 @@ function FlowingMenu({
   );
 }
 
-function MenuItem({ link, text, image, speed, textColor, marqueeBgColor, marqueeTextColor, borderColor, isFirst, onHover, onLeave }) {
+function MenuItem({
+  link,
+  text,
+  image,
+  description,
+  tags,
+  speed,
+  textColor,
+  marqueeBgColor,
+  marqueeTextColor,
+  borderColor,
+  isFirst,
+  onHover,
+  onLeave
+}) {
   const itemRef = useRef(null);
   const marqueeRef = useRef(null);
   const marqueeInnerRef = useRef(null);
@@ -192,7 +228,22 @@ function MenuItem({ link, text, image, speed, textColor, marqueeBgColor, marquee
         onMouseLeave={handleMouseLeave}
         style={{ color: textColor }}
       >
-        {text}
+        <div className="flowing-menu-item-info">
+          <span className="flowing-menu-title-text">{text}</span>
+          {description && (
+            <span className="flowing-menu-desc-text">{description}</span>
+          )}
+        </div>
+
+        {tags && tags.length > 0 && (
+          <div className="flowing-menu-tags-list">
+            {tags.map((tag, i) => (
+              <span key={i} className="flowing-menu-tag-pill">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
       </a>
       <div
         className="flowing-menu-marquee-wrapper"

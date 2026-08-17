@@ -388,18 +388,6 @@ export const StaggeredMenu = ({
         >
           <div className="sm-logo" aria-label="Logo">
             <a href="#" className="sm-logo-link" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-              {logoUrl ? (
-                <img
-                  src={logoUrl}
-                  alt="Logo"
-                  className="sm-logo-img"
-                  draggable={false}
-                />
-              ) : (
-                <div className="sm-logo-icon">
-                  SG
-                </div>
-              )}
               <span className="sm-logo-text">
                 {logoText}<span style={{ color: accentColor }}>.</span>
               </span>
@@ -525,11 +513,11 @@ export const StaggeredMenu = ({
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
 .sm-scope .sm-logo-link { display: inline-flex; align-items: center; gap: 0.75rem; text-decoration: none !important; color: #ffffff !important; transition: transform 0.2s ease, opacity 0.2s ease; }
 .sm-scope .sm-logo-link:hover { transform: scale(1.03); opacity: 0.95; text-decoration: none !important; color: #ffffff !important; }
-.sm-scope .sm-logo-img { display: block; height: 38px; width: 38px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255, 255, 255, 0.25); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
-.sm-scope .sm-logo-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); flex-shrink: 0; }
-.sm-scope .sm-logo-text { font-size: 1.25rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #ffffff !important; text-decoration: none !important; line-height: 1; }
+.sm-scope .sm-logo-img { display: block; height: 28px; width: 28px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255, 255, 255, 0.25); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+.sm-scope .sm-logo-icon { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); flex-shrink: 0; }
+.sm-scope .sm-logo-text { font-family: 'Priestacy', serif, sans-serif; font-size: 0.9rem; font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase; color: #ffffff !important; text-decoration: none !important; line-height: 1; }
 
-.sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; border: none; cursor: pointer; color: #ffffff; font-weight: 600; font-size: 1rem; line-height: 1; overflow: visible; padding: 0.6rem 1.2rem; border-radius: 9999px; background-color: rgba(31, 41, 55, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.3s ease; pointer-events: auto; }
+.sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; border: none; cursor: pointer; color: #ffffff; font-weight: 600; font-size: 0.95rem; line-height: 1; overflow: visible; padding: 0.6rem 1.2rem; border-radius: 9999px; background-color: rgba(31, 41, 55, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.3s ease; pointer-events: auto; }
 .sm-scope .sm-toggle:hover { background-color: rgba(31, 41, 55, 0.85); border-color: rgba(255, 255, 255, 0.3); }
 .sm-scope .sm-toggle-textWrap { position: relative; display: inline-block; height: 1em; overflow: hidden; white-space: nowrap; width: var(--sm-toggle-width, auto); min-width: var(--sm-toggle-width, auto); }
 .sm-scope .sm-toggle-textInner { display: flex; flex-direction: column; line-height: 1; }
