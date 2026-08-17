@@ -26,6 +26,9 @@ import {
 } from "react-icons/si";
 import { GitHubCalendar } from "react-github-calendar";
 import "../styles/landing.css";
+import GradualBlur from "./Animations/GradualBlur";
+import StaggeredMenu from "./Animations/StagedMenu";
+import FlowingMenu from "./Animations/FlowingMenu";
 
 export default function LandingPage() {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -392,29 +395,39 @@ export default function LandingPage() {
     projects[(currentProjectIndex + 1) % projects.length],
   ];
 
+  const navItems = [
+    { label: "Home", link: "#" },
+    { label: "Work", link: "#work" },
+    { label: "About", link: "#about" },
+    { label: "Contact", link: "#footer" }
+  ];
+
+  const socialLinks = [
+    { label: "LinkedIn", link: "https://www.linkedin.com/in/anup-bhujel-2b1381303/" },
+    { label: "GitHub", link: "https://github.com/lynx-fx" },
+    { label: "Instagram", link: "https://www.instagram.com/" }
+  ];
+
+  const flowingMenuItems = projects.map((p) => ({
+    text: p.title,
+    link: p.url,
+    image: p.src
+  }));
+
   return (
     <div className="portfolio-container">
-      {/* Fixed Navigation */}
-      <nav
-        className={`navigation ${isNavVisible ? "nav-visible" : "nav-hidden"}`}
-      >
-        <div className="nav-wrapper">
-          <div className="nav-menu">
-            <a href="#" className="nav-link nav-link-active">
-              Home
-            </a>
-            <a href="#work" className="nav-link">
-              Work
-            </a>
-            <a href="#about" className="nav-link">
-              About
-            </a>
-            <a href="#footer" className="nav-link">
-              Contact
-            </a>
-          </div>
-        </div>
-      </nav>
+      {/* System Wide Fixed Edge Blurs */}
+      <GradualBlur target="page" position="top" preset="page-header" strength={3.5} height="7rem" zIndex={40} />
+      <GradualBlur target="page" position="bottom" preset="page-footer" strength={3.5} height="7rem" zIndex={40} />
+
+      {/* Staggered Navigation Overlay */}
+      <StaggeredMenu
+        items={navItems}
+        socialItems={socialLinks}
+        accentColor="#3b82f6"
+        isFixed={true}
+        colors={["#1f2937", "#111827"]}
+      />
       {/* Hero Section */}
       <div className="hero-section">
         <div
@@ -476,7 +489,8 @@ export default function LandingPage() {
           </a>
         </div>
         {/* Technologies Section */}
-        <div ref={techRef} className="technologies-section" id="about">
+        <div ref={techRef} className="technologies-section relative" id="about">
+          <GradualBlur position="top" height="4rem" strength={1.5} opacity={0.6} curve="bezier" />
           <h2
             className={`section-title ${visibleSections.about ? "visible" : ""
               }`}
@@ -517,107 +531,36 @@ export default function LandingPage() {
           {/* Portfolio Section */}
           <div
             ref={projectsRef}
-            className={`portfolio-section ${visibleSections.work ? "visible" : ""
+            className={`portfolio-section relative ${visibleSections.work ? "visible" : ""
               }`}
             id="work"
           >
             <div className="portfolio-header">
               <h2
-                className={`section-title ${visibleSections.about ? "visible" : ""
+                className={`section-title ${visibleSections.work ? "visible" : ""
                   }`}
               >
                 My Projects
               </h2>
-              <div className="portfolio-controls">
-                <button
-                  onClick={prevProject}
-                  disabled={isTransitioning}
-                  className="control-btn"
-                >
-                  <ChevronLeft className="control-icon" />
-                </button>
-                <button
-                  onClick={nextProject}
-                  disabled={isTransitioning}
-                  className="control-btn"
-                >
-                  <ChevronRight className="control-icon" />
-                </button>
-              </div>
             </div>
-            {/* Drag-enabled carousel */}
-            <div
-              ref={carouselRef}
-              className={`portfolio-carousel ${isDragging ? "dragging" : ""}`}
-              onMouseDown={handleDragStart}
-              onTouchStart={handleDragStart}
-              style={{
-                transform: `translateX(${dragOffset.x}px)`,
-                cursor: isDragging ? "grabbing" : "grab",
-              }}
-            >
-              <div className="portfolio-grid">
-                {visibleProjects.map((project, index) => (
-                  <div
-                    key={`${project.id}-${currentProjectIndex}-${index}`}
-                    className={`project-card ${isTransitioning ? "project-transitioning" : ""
-                      }`}
-                    style={{ animationDelay: `${index * 0.2}s` }}
-                  >
-                    <div className="project-mockup">
-                      <img
-                        src={project.src || "/placeholder.svg"}
-                        height={200}
-                        alt={project.title}
-                      />
-                    </div>
-                    <h3 className="project-title">{project.title}</h3>
-                    <p className="project-description">{project.description}</p>
-                    <div className="project-tags">
-                      {project.tags.map((tag, tagIndex) => (
-                        <span key={tagIndex} className="project-tag">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <button className="btn btn-primary">
-                        <span>View Project</span>
-                      </button>
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Dot pagination */}
-            <div className="carousel-pagination">
-              {projects.map((_, index) => (
-                <button
-                  key={index}
-                  className={`pagination-dot ${index === currentProjectIndex ? "active" : ""
-                    }`}
-                  onClick={() => goToProject(index)}
-                  disabled={isTransitioning}
-                  aria-label={`Go to project ${index + 1}`}
-                />
-              ))}
-            </div>
-            {/* Drag instruction */}
-            <div className="drag-instruction">
-              <span>← Drag or click dots to navigate →</span>
-            </div>
+            <FlowingMenu
+              items={flowingMenuItems}
+              speed={15}
+              textColor="#ffffff"
+              bgColor="transparent"
+              marqueeBgColor="#ffffff"
+              marqueeTextColor="#000000"
+              borderColor="rgba(75, 85, 99, 0.4)"
+            />
           </div>
           {/* GitHub Stats Section */}
           <div
             ref={githubRef}
-            className={`github-section ${visibleSections.github ? "visible" : ""
+            className={`github-section relative ${visibleSections.github ? "visible" : ""
               }`}
             id="github"
           >
+            <GradualBlur position="top" height="4rem" strength={1.5} opacity={0.6} curve="bezier" />
             <h2
               className={`section-title ${visibleSections.github ? "visible" : ""
                 }`}
@@ -652,7 +595,8 @@ export default function LandingPage() {
         </div>
       </div>
       {/* Contact Section */}
-      <div ref={contactRef} className="contact-section">
+      <div ref={contactRef} className="contact-section relative">
+        <GradualBlur position="top" height="5rem" strength={2} opacity={0.7} curve="bezier" />
         <div
           className={`contact-content ${visibleSections.contact ? "visible" : ""
             }`}
@@ -670,7 +614,8 @@ export default function LandingPage() {
         </div>
       </div>
       {/* Footer */}
-      <footer className="footer" id="footer">
+      <footer className="footer relative" id="footer">
+        <GradualBlur position="top" height="4rem" strength={1.5} opacity={0.6} curve="bezier" />
         <div className="footer-content">
           <div className="footer-grid">
             <div className="footer-brand">

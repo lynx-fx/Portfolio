@@ -7,6 +7,16 @@
   caret-color: transparent;
 }
 
+/* Utility classes */
+.relative {
+  position: relative;
+}
+.portfolio-carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
 /* Lenis smooth scroll adjustments */
 html.lenis, html.lenis body {
   height: auto;
