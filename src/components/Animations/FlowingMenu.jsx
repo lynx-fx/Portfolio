@@ -18,7 +18,7 @@ function FlowingMenu({
   const handleGlobalMouseMove = (e) => {
     if (!previewRef.current) return;
     const cardWidth = 320;
-    const cardHeight = 200;
+    const cardHeight = 240;
 
     let targetX = e.clientX + 20;
     let targetY = e.clientY - cardHeight / 2;

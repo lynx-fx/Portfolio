@@ -424,6 +424,7 @@ export default function LandingPage() {
       <StaggeredMenu
         items={navItems}
         socialItems={socialLinks}
+        logoUrl="/lynxx.png"
         accentColor="#3b82f6"
         isFixed={true}
         colors={["#1f2937", "#111827"]}
