@@ -362,11 +362,29 @@ const ParticleText = ({
       sampleText();
     };
 
+    const handleTouchMove = event => {
+      if (event.touches && event.touches[0]) {
+        const touch = event.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        pointer.x = touch.clientX - rect.left;
+        pointer.y = touch.clientY - rect.top;
+        pointer.active = true;
+        if (trigger === 'hover') startGather(true);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      pointer.active = false;
+    };
+
     reduceMotionQuery?.addEventListener('change', handleReduceMotionChange);
     canvas.addEventListener('pointerenter', handlePointerEnter);
     canvas.addEventListener('pointermove', handlePointerMove);
     canvas.addEventListener('pointerleave', handlePointerLeave);
     canvas.addEventListener('click', handleClick);
+    canvas.addEventListener('touchstart', handleTouchMove, { passive: true });
+    canvas.addEventListener('touchmove', handleTouchMove, { passive: true });
+    canvas.addEventListener('touchend', handleTouchEnd);
 
     const resizeObserver = new ResizeObserver(queueSample);
     resizeObserver.observe(container);
@@ -380,6 +398,9 @@ const ParticleText = ({
       canvas.removeEventListener('pointermove', handlePointerMove);
       canvas.removeEventListener('pointerleave', handlePointerLeave);
       canvas.removeEventListener('click', handleClick);
+      canvas.removeEventListener('touchstart', handleTouchMove);
+      canvas.removeEventListener('touchmove', handleTouchMove);
+      canvas.removeEventListener('touchend', handleTouchEnd);
 
       if (animationFrame !== null) window.cancelAnimationFrame(animationFrame);
       if (resizeFrame !== null) window.cancelAnimationFrame(resizeFrame);
@@ -406,11 +427,31 @@ const ParticleText = ({
   return (
     <div
       ref={containerRef}
-      className={`relative block h-full min-h-[240px] w-full overflow-hidden touch-none ${className}`}
-      style={style}
+      className={`particle-text-container ${className}`}
+      style={{
+        position: 'relative',
+        display: 'block',
+        width: '100%',
+        height: '100%',
+        minHeight: '220px',
+        overflow: 'hidden',
+        touchAction: 'none',
+        ...style
+      }}
       aria-label={text}
     >
-      <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" aria-hidden="true" />
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          display: 'block'
+        }}
+        aria-hidden="true"
+      />
       <span className="sr-only">{text}</span>
     </div>
   );
