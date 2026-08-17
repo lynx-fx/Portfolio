@@ -397,7 +397,7 @@ export const StaggeredMenu = ({
 
           <button
             ref={toggleBtnRef}
-            className="sm-toggle"
+            className={`sm-toggle ${open ? 'sm-open' : ''}`}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="staggered-menu-panel"
@@ -512,7 +512,7 @@ export const StaggeredMenu = ({
 
 .sm-scope .staggered-menu-wrapper { position: relative; width: 100%; height: 100%; z-index: 40; pointer-events: none; }
 
-.sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2rem; background: transparent; pointer-events: none; z-index: 30; }
+.sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2rem; background: transparent; pointer-events: none; z-index: 60; }
 .sm-scope .staggered-menu-header > * { pointer-events: auto; }
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
 .sm-scope .sm-logo-link { display: inline-flex; align-items: center; gap: 0.75rem; text-decoration: none !important; color: #ffffff !important; transition: transform 0.2s ease, opacity 0.2s ease; }
@@ -523,6 +523,8 @@ export const StaggeredMenu = ({
 
 .sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; border: none; cursor: pointer; color: #ffffff; font-weight: 600; font-size: 0.9rem; line-height: 1; overflow: visible; padding: 0.55rem 1.1rem; border-radius: 9999px; background-color: rgba(31, 41, 55, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.3s ease; pointer-events: auto; }
 .sm-scope .sm-toggle:hover { background-color: rgba(31, 41, 55, 0.85); border-color: rgba(255, 255, 255, 0.3); }
+.sm-scope .sm-toggle.sm-open { background-color: rgba(243, 244, 246, 0.95); border-color: rgba(0, 0, 0, 0.15); color: #111827 !important; }
+.sm-scope .sm-toggle.sm-open:hover { background-color: rgba(229, 231, 235, 0.95); }
 .sm-scope .sm-toggle-textWrap { position: relative; display: inline-block; height: 1em; overflow: hidden; white-space: nowrap; width: var(--sm-toggle-width, auto); min-width: var(--sm-toggle-width, auto); }
 .sm-scope .sm-toggle-textInner { display: flex; flex-direction: column; line-height: 1; }
 .sm-scope .sm-toggle-line { display: block; height: 1em; line-height: 1; }
