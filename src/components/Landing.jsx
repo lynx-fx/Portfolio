@@ -26,6 +26,11 @@ import {
 } from "react-icons/si";
 import { GitHubCalendar } from "react-github-calendar";
 import "../styles/landing.css";
+import GradualBlur from "./Animations/GradualBlur";
+import StaggeredMenu from "./Animations/StagedMenu";
+import FlowingMenu from "./Animations/FlowingMenu";
+import DarkVeil from "./Animations/DarkVile";
+import FluidGlass from "./Animations/FluidGlass";
 
 export default function LandingPage() {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -392,91 +397,128 @@ export default function LandingPage() {
     projects[(currentProjectIndex + 1) % projects.length],
   ];
 
+  const navItems = [
+    { label: "Home", link: "#" },
+    { label: "Work", link: "#work" },
+    { label: "About", link: "#about" },
+    { label: "Contact", link: "#footer" }
+  ];
+
+  const socialLinks = [
+    { label: "LinkedIn", link: "https://www.linkedin.com/in/sudarshan-gharti-2b1381303" },
+    { label: "GitHub", link: "https://github.com/lynx-fx" },
+    { label: "Instagram", link: "https://www.instagram.com/anup.archive/" }
+  ];
+
+  const flowingMenuItems = projects.map((p) => ({
+    text: p.title,
+    link: p.url,
+    image: p.src,
+    description: p.description,
+    tags: p.tags
+  }));
+
   return (
     <div className="portfolio-container">
-      {/* Fixed Navigation */}
-      <nav
-        className={`navigation ${isNavVisible ? "nav-visible" : "nav-hidden"}`}
-      >
-        <div className="nav-wrapper">
-          <div className="nav-menu">
-            <a href="#" className="nav-link nav-link-active">
-              Home
+
+      {/* System Wide Fixed Edge Blur */}
+      <GradualBlur target="page" position="bottom" preset="page-footer" zIndex={40} />
+
+      {/* Staggered Navigation Overlay */}
+      <StaggeredMenu
+        items={navItems}
+        socialItems={socialLinks}
+        logoUrl="/lynxx.png"
+        accentColor="#3b82f6"
+        isFixed={true}
+        colors={["#1f2937", "#111827"]}
+      />
+      {/* Hero Section */}
+      <div className="hero-section relative overflow-hidden">
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            width: '100%',
+            height: '480px',
+            maxHeight: '65vh',
+            zIndex: 0,
+            pointerEvents: 'none',
+            opacity: 0.6,
+            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)'
+          }}
+        >
+          <DarkVeil speed={0.4} hueShift={20} warpAmount={0.2} noiseIntensity={0.02} />
+        </div>
+        <div className="hero-content-wrapper" style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div
+            className={`hero-location ${isLoaded ? "visible" : ""}`}
+            style={{ animationDelay: "0.4s" }}
+          >
+            Based in Nepal
+          </div>
+          <h1
+            className={`hero-title ${isLoaded ? "visible" : ""}`}
+            style={{ animationDelay: "0.6s" }}
+          >
+            <span className="hero-title-line">
+              Bridging <span className="hero-accent">Visual Elegance</span> with
+            </span>
+            <span className="hero-title-line">
+              <span className="hero-accent">Code Logic,</span> seamlessly.
+            </span>
+          </h1>
+          <p
+            className={`hero-subtitle ${isLoaded ? "visible" : ""}`}
+            style={{ animationDelay: "0.8s" }}
+          >
+            Hi, I'm Sudarshan, I create intuitive and highly functional web
+            applications.
+          </p>
+          <div
+            className={`hero-buttons ${isLoaded ? "visible" : ""}`}
+            style={{ animationDelay: "1.0s" }}
+          >
+            <a href="#work">
+              <button className="btn btn-outline btn-with-icon">
+                <Briefcase className="btn-icon-left" />
+                <span>See My Work</span>
+              </button>
             </a>
-            <a href="#work" className="nav-link">
-              Work
+            <a
+              href="https://github.com/lynx-fx"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="btn btn-outline btn-with-icon">
+                <SiGithub className="btn-icon-left" />
+                <span>GitHub</span>
+              </button>
             </a>
-            <a href="#about" className="nav-link">
-              About
+            <a href="https://www.upwork.com/freelancers/~017780a7917428d03f?mp_source=share"
+              target="_blank">
+              <button className="btn btn-outline btn-with-icon">
+                <Handshake className="btn-icon-left" />
+                <span>Hire Me</span>
+              </button>
             </a>
-            <a href="#footer" className="nav-link">
-              Contact
+            <a
+              href="/Sudarshan-Gharti.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="btn btn-outline btn-with-icon">
+                <FileText className="btn-icon-left" />
+                <span>Resume</span>
+              </button>
             </a>
           </div>
         </div>
-      </nav>
-      {/* Hero Section */}
-      <div className="hero-section">
-        <div
-          className={`hero-location ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "0.4s" }}
-        >
-          Based in Nepal
-        </div>
-        <h1
-          className={`hero-title ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "0.6s" }}
-        >
-          Bridging <span className="hero-accent">Visual Elegance</span> with{" "}
-          <span className="hero-accent">Code Logic,</span> seamlessly.
-        </h1>
-        <p
-          className={`hero-subtitle ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "0.8s" }}
-        >
-          Hi, I'm Sudarshan, I create intuitive and highly functional web
-          applications.
-        </p>
-        <div
-          className={`hero-buttons ${isLoaded ? "visible" : ""}`}
-          style={{ animationDelay: "1.0s" }}
-        >
-          <a href="#work">
-            <button className="btn btn-outline btn-with-icon">
-              <Briefcase className="btn-icon-left" />
-              <span>See My Work</span>
-            </button>
-          </a>
-          <a
-            href="https://github.com/lynx-fx"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="btn btn-outline btn-with-icon">
-              <SiGithub className="btn-icon-left" />
-              <span>GitHub</span>
-            </button>
-          </a>
-          <a href="https://www.upwork.com/freelancers/~017780a7917428d03f?mp_source=share"
-          target="_blank">
-            <button className="btn btn-outline btn-with-icon">
-              <Handshake className="btn-icon-left" />
-              <span>Hire Me</span>
-            </button>
-          </a>
-          <a
-            href="/Sudarshan-Gharti.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="btn btn-outline btn-with-icon">
-              <FileText className="btn-icon-left" />
-              <span>Resume</span>
-            </button>
-          </a>
-        </div>
         {/* Technologies Section */}
-        <div ref={techRef} className="technologies-section" id="about">
+        <div ref={techRef} className="technologies-section relative" id="about">
           <h2
             className={`section-title ${visibleSections.about ? "visible" : ""
               }`}
@@ -517,104 +559,32 @@ export default function LandingPage() {
           {/* Portfolio Section */}
           <div
             ref={projectsRef}
-            className={`portfolio-section ${visibleSections.work ? "visible" : ""
+            className={`portfolio-section relative ${visibleSections.work ? "visible" : ""
               }`}
             id="work"
           >
             <div className="portfolio-header">
               <h2
-                className={`section-title ${visibleSections.about ? "visible" : ""
+                className={`section-title ${visibleSections.work ? "visible" : ""
                   }`}
               >
                 My Projects
               </h2>
-              <div className="portfolio-controls">
-                <button
-                  onClick={prevProject}
-                  disabled={isTransitioning}
-                  className="control-btn"
-                >
-                  <ChevronLeft className="control-icon" />
-                </button>
-                <button
-                  onClick={nextProject}
-                  disabled={isTransitioning}
-                  className="control-btn"
-                >
-                  <ChevronRight className="control-icon" />
-                </button>
-              </div>
             </div>
-            {/* Drag-enabled carousel */}
-            <div
-              ref={carouselRef}
-              className={`portfolio-carousel ${isDragging ? "dragging" : ""}`}
-              onMouseDown={handleDragStart}
-              onTouchStart={handleDragStart}
-              style={{
-                transform: `translateX(${dragOffset.x}px)`,
-                cursor: isDragging ? "grabbing" : "grab",
-              }}
-            >
-              <div className="portfolio-grid">
-                {visibleProjects.map((project, index) => (
-                  <div
-                    key={`${project.id}-${currentProjectIndex}-${index}`}
-                    className={`project-card ${isTransitioning ? "project-transitioning" : ""
-                      }`}
-                    style={{ animationDelay: `${index * 0.2}s` }}
-                  >
-                    <div className="project-mockup">
-                      <img
-                        src={project.src || "/placeholder.svg"}
-                        height={200}
-                        alt={project.title}
-                      />
-                    </div>
-                    <h3 className="project-title">{project.title}</h3>
-                    <p className="project-description">{project.description}</p>
-                    <div className="project-tags">
-                      {project.tags.map((tag, tagIndex) => (
-                        <span key={tagIndex} className="project-tag">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <button className="btn btn-primary">
-                        <span>View Project</span>
-                      </button>
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Dot pagination */}
-            <div className="carousel-pagination">
-              {projects.map((_, index) => (
-                <button
-                  key={index}
-                  className={`pagination-dot ${index === currentProjectIndex ? "active" : ""
-                    }`}
-                  onClick={() => goToProject(index)}
-                  disabled={isTransitioning}
-                  aria-label={`Go to project ${index + 1}`}
-                />
-              ))}
-            </div>
-            {/* Drag instruction */}
-            <div className="drag-instruction">
-              <span>← Drag or click dots to navigate →</span>
-            </div>
+            <FlowingMenu
+              items={flowingMenuItems}
+              speed={15}
+              textColor="#ffffff"
+              bgColor="transparent"
+              marqueeBgColor="#ffffff"
+              marqueeTextColor="#000000"
+              borderColor="rgba(75, 85, 99, 0.4)"
+            />
           </div>
           {/* GitHub Stats Section */}
           <div
             ref={githubRef}
-            className={`github-section ${visibleSections.github ? "visible" : ""
+            className={`github-section relative ${visibleSections.github ? "visible" : ""
               }`}
             id="github"
           >
@@ -652,7 +622,7 @@ export default function LandingPage() {
         </div>
       </div>
       {/* Contact Section */}
-      <div ref={contactRef} className="contact-section">
+      <div ref={contactRef} className="contact-section relative">
         <div
           className={`contact-content ${visibleSections.contact ? "visible" : ""
             }`}
@@ -670,7 +640,7 @@ export default function LandingPage() {
         </div>
       </div>
       {/* Footer */}
-      <footer className="footer" id="footer">
+      <footer className="footer relative" id="footer">
         <div className="footer-content">
           <div className="footer-grid">
             <div className="footer-brand">
@@ -726,7 +696,7 @@ export default function LandingPage() {
               <ul className="footer-links">
                 <li>
                   <a
-                    href="https://www.linkedin.com/in/anup-bhujel-2b1381303/"
+                    href="https://www.linkedin.com/in/sudarshan-gharti-2b1381303"
                     target="_blank"
                     className="footer-link footer-link-with-icon"
                     rel="noreferrer"
@@ -748,7 +718,7 @@ export default function LandingPage() {
                 </li>
                 <li>
                   <a
-                    href="https://www.instagram.com/"
+                    href="https://www.instagram.com/anup.archive/"
                     target="_blank"
                     className="footer-link footer-link-with-icon"
                     rel="noreferrer"
