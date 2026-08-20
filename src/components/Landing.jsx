@@ -441,9 +441,9 @@ export default function LandingPage() {
             top: 0,
             left: 0,
             right: 0,
+            bottom: 0,
             width: '100%',
-            height: '480px',
-            maxHeight: '65vh',
+            height: '100%',
             zIndex: 0,
             pointerEvents: 'none',
             opacity: 0.6,
@@ -517,108 +517,108 @@ export default function LandingPage() {
             </a>
           </div>
         </div>
-        {/* Technologies Section */}
-        <div ref={techRef} className="technologies-section relative" id="about">
-          <h2
-            className={`section-title ${visibleSections.about ? "visible" : ""
-              }`}
-          >
-            Current technologies
-          </h2>
-          <p
-            className={`section-description ${visibleSections.about ? "visible" : ""
-              }`}
-            style={{ animationDelay: "0.4s" }}
-          >
-            I leverage modern technologies to create innovative and efficient
-            solutions — here are some I work with most.
-          </p>
-          <div className="tech-grid">
-            {technologies.map((tech, index) => {
-              const IconComponent = tech.icon;
-              return (
-                <div
-                  key={index}
-                  className={`tech-card tech-card-${tech.color} ${visibleSections.about ? "visible" : ""
-                    }`}
-                  style={{ animationDelay: `${0.6 + index * 0.15}s` }}
-                >
-                  <div className="tech-card-content">
-                    <div className={`tech-icon tech-icon-${tech.color}`}>
-                      <IconComponent className="tech-icon-svg" />
-                    </div>
-                    <div className="tech-info">
-                      <h3 className="tech-name">{tech.name}</h3>
-                      <p className="tech-description">{tech.description}</p>
-                    </div>
+      </div>
+      {/* Technologies Section */}
+      <div ref={techRef} className="technologies-section relative" id="about">
+        <h2
+          className={`section-title ${visibleSections.about ? "visible" : ""
+            }`}
+        >
+          Current technologies
+        </h2>
+        <p
+          className={`section-description ${visibleSections.about ? "visible" : ""
+            }`}
+          style={{ animationDelay: "0.4s" }}
+        >
+          I leverage modern technologies to create innovative and efficient
+          solutions — here are some I work with most.
+        </p>
+        <div className="tech-grid">
+          {technologies.map((tech, index) => {
+            const IconComponent = tech.icon;
+            return (
+              <div
+                key={index}
+                className={`tech-card tech-card-${tech.color} ${visibleSections.about ? "visible" : ""
+                  }`}
+                style={{ animationDelay: `${0.6 + index * 0.15}s` }}
+              >
+                <div className="tech-card-content">
+                  <div className={`tech-icon tech-icon-${tech.color}`}>
+                    <IconComponent className="tech-icon-svg" />
+                  </div>
+                  <div className="tech-info">
+                    <h3 className="tech-name">{tech.name}</h3>
+                    <p className="tech-description">{tech.description}</p>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-          {/* Portfolio Section */}
-          <div
-            ref={projectsRef}
-            className={`portfolio-section relative ${visibleSections.work ? "visible" : ""
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      {/* Portfolio Section */}
+      <div
+        ref={projectsRef}
+        className={`portfolio-section relative ${visibleSections.work ? "visible" : ""
+          }`}
+        id="work"
+      >
+        <div className="portfolio-header">
+          <h2
+            className={`section-title ${visibleSections.work ? "visible" : ""
               }`}
-            id="work"
           >
-            <div className="portfolio-header">
-              <h2
-                className={`section-title ${visibleSections.work ? "visible" : ""
-                  }`}
-              >
-                My Projects
-              </h2>
-            </div>
-            <FlowingMenu
-              items={flowingMenuItems}
-              speed={15}
-              textColor="#ffffff"
-              bgColor="transparent"
-              marqueeBgColor="#ffffff"
-              marqueeTextColor="#000000"
-              borderColor="rgba(75, 85, 99, 0.4)"
-            />
-          </div>
-          {/* GitHub Stats Section */}
-          <div
-            ref={githubRef}
-            className={`github-section relative ${visibleSections.github ? "visible" : ""
-              }`}
-            id="github"
-          >
-            <h2
-              className={`section-title ${visibleSections.github ? "visible" : ""
-                }`}
-            >
-              GitHub Activity
-            </h2>
-            <p
-              className={`section-description ${visibleSections.github ? "visible" : ""
-                }`}
-              style={{ animationDelay: "0.4s" }}
-            >
-              Tracking my code journey, contributions, and project statistics in
-              real-time.
-            </p>
+            My Projects
+          </h2>
+        </div>
+        <FlowingMenu
+          items={flowingMenuItems}
+          speed={15}
+          textColor="#ffffff"
+          bgColor="transparent"
+          marqueeBgColor="#ffffff"
+          marqueeTextColor="#000000"
+          borderColor="rgba(75, 85, 99, 0.4)"
+        />
+      </div>
+      {/* GitHub Stats Section */}
+      <div
+        ref={githubRef}
+        className={`github-section relative ${visibleSections.github ? "visible" : ""
+          }`}
+        id="github"
+      >
+        <h2
+          className={`section-title ${visibleSections.github ? "visible" : ""
+            }`}
+        >
+          GitHub Activity
+        </h2>
+        <p
+          className={`section-description ${visibleSections.github ? "visible" : ""
+            }`}
+          style={{ animationDelay: "0.4s" }}
+        >
+          Tracking my code journey, contributions, and project statistics in
+          real-time.
+        </p>
 
-            <div
-              className="github-calendar-container"
-              style={{ animationDelay: "1s" }}
-            >
-              <GitHubCalendar
-                username="lynx-fx"
-                fontSize={12}
-                blockSize={12}
-                blockMargin={4}
-                colorScheme="dark"
-                theme={{
-                  dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
-                }}
-              />
-            </div>
-          </div>
+        <div
+          className="github-calendar-container"
+          style={{ animationDelay: "1s" }}
+        >
+          <GitHubCalendar
+            username="lynx-fx"
+            fontSize={12}
+            blockSize={12}
+            blockMargin={4}
+            colorScheme="dark"
+            theme={{
+              dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+            }}
+          />
         </div>
       </div>
       {/* Contact Section */}
