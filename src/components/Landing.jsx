@@ -72,11 +72,11 @@ export default function LandingPage() {
     },
     {
       id: 3,
-      title: "Serviq",
-      description: "A inventory management system for mechanical businesses.",
-      tags: ["NextJs", ".NET", "Postgres"],
-      url: "https://serviq.gharti-sudarshan.com.np/",
-      src: "/Serviq.png",
+      title: "DownTime Checker",
+      description: "A website analyzing and monitoring tool with real-time team collaboration.",
+      tags: ["NextJs", "NestJs", "Postgres", "Prisma"],
+      url: "https://websitedowntimechecker.com",
+      src: "/pollsite.png",
     },
     {
       id: 4,
@@ -101,6 +101,14 @@ export default function LandingPage() {
       tags: ["NextJs", "TailWind", "Express", "MongoDB", "Redis"],
       url: "https://supplementsandpowders.com/",
       src: "/Ecom.png",
+    },
+    {
+      id: 8,
+      title: "Serviq",
+      description: "A inventory management system for mechanical businesses.",
+      tags: ["NextJs", ".NET", "Postgres"],
+      url: "https://serviq.gharti-sudarshan.com.np/",
+      src: "/Serviq.png",
     },
     {
       id: 7,
