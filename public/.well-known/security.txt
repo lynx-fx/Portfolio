@@ -1,0 +1,10 @@
+# Security Information for gharti-sudarshan.com.np
+# Compliant with RFC 9116
+
+Contact: mailto:info@gharti-sudarshan.com.np
+Contact: https://github.com/lynx-fx
+Contact: https://www.linkedin.com/in/sudarshan-gharti-2b1381303
+Expires: 2027-08-23T00:00:00.000Z
+Canonical: https://gharti-sudarshan.com.np/.well-known/security.txt
+Preferred-Languages: en
+Policy: https://gharti-sudarshan.com.np/
