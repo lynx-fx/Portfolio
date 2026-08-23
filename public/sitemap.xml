@@ -1,9 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://gharti-sudarshan.com.np/</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://gharti-sudarshan.com.np/me.jpg</image:loc>
+      <image:title>Sudarshan Gharti - Web Developer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gharti-sudarshan.com.np/Voyage.png</image:loc>
+      <image:title>Voyage - Travel Guidance App</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gharti-sudarshan.com.np/CardKeeper.png</image:loc>
+      <image:title>CardKeeper - Secure Card Management</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gharti-sudarshan.com.np/pollsite.png</image:loc>
+      <image:title>DownTime Checker - Website Monitoring</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gharti-sudarshan.com.np/Eventra.png</image:loc>
+      <image:title>Eventra - Ticket Selling Platform</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gharti-sudarshan.com.np/Vanis.png</image:loc>
+      <image:title>Vanis - File Sharing App</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gharti-sudarshan.com.np/Ecom.png</image:loc>
+      <image:title>Supplements &amp; Powders - E-commerce App</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gharti-sudarshan.com.np/Serviq.png</image:loc>
+      <image:title>Serviq - Inventory Management System</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gharti-sudarshan.com.np/deauther.png</image:loc>
+      <image:title>Wifi DeAuther - Security Testing Tool</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://voyage.gharti-sudarshan.com.np/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cardkeeper.gharti-sudarshan.com.np/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://eventra.gharti-sudarshan.com.np/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://serviq.gharti-sudarshan.com.np/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
+
