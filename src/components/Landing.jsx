@@ -64,19 +64,19 @@ export default function LandingPage() {
     },
     {
       id: 2,
-      title: "CardKeeper",
-      description: "A web application for managing and securely storing card information.",
-      tags: ["NestJs", "React", "Node", "Postgres", "Redis"],
-      url: "https://cardkeeper.gharti-sudarshan.com.np",
-      src: "/CardKeeper.png",
-    },
-    {
-      id: 3,
       title: "DownTime Checker",
       description: "A website analyzing and monitoring tool with real-time team collaboration.",
       tags: ["NextJs", "NestJs", "Postgres", "Prisma"],
       url: "https://websitedowntimechecker.com",
       src: "/pollsite.png",
+    },
+    {
+      id: 3,
+      title: "Himalayan Ama",
+      description: "A web based CMS and booking application for apartments.",
+      tags: ["NextJs", "Express", "MongoDB", "TailWind"],
+      url: "http://76.13.127.224:3000",
+      src: "/ama.png",
     },
     {
       id: 4,
@@ -88,6 +88,14 @@ export default function LandingPage() {
     },
     {
       id: 5,
+      title: "CardKeeper",
+      description: "A web application for managing and securely storing card information.",
+      tags: ["NestJs", "React", "Node", "Postgres", "Redis"],
+      url: "https://cardkeeper.gharti-sudarshan.com.np",
+      src: "/CardKeeper.png",
+    },
+    {
+      id: 6,
       title: "Vanis",
       description: "A modern web app for easy file sharing",
       tags: ["NextJs", "TailWind", "Express", "MongoDB"],
@@ -95,7 +103,7 @@ export default function LandingPage() {
       src: "/Vanis.png",
     },
     {
-      id: 6,
+      id: 7,
       title: "Supplements & Powders",
       description: "A comprehensive e-commerce application tailored for affilated marketing.",
       tags: ["NextJs", "TailWind", "Express", "MongoDB", "Redis"],
@@ -111,7 +119,7 @@ export default function LandingPage() {
       src: "/Serviq.png",
     },
     {
-      id: 7,
+      id: 9,
       title: "Wifi DeAuther",
       description: "A shell script for conducting WiFi deauthentication attacks for security testing.",
       tags: ["Shell"],
